@@ -332,8 +332,8 @@ Transform:
   m_GameObject: {fileID: 396305364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.89, z: 0.134}
-  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.20942667}
+  m_LocalPosition: {x: 0.2, y: 0.89, z: 0.07667}
+  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.17554986}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 868697480}
@@ -620,8 +620,8 @@ Transform:
   m_GameObject: {fileID: 519942086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.899, z: 0.392}
-  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.20942667}
+  m_LocalPosition: {x: 0.2, y: 0.899, z: 0.36528}
+  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.1638228}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 868697480}
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7089458953835526358, guid: 6fa7dcaa93845424db30371e4676643c, type: 3}
   bulletSpawn: {fileID: 338244093}
-  bulletVelocity: 100
+  bulletVelocity: 50
   bulletPrefablifeTime: 3
 --- !u!1 &708444646
 GameObject:
@@ -1643,8 +1643,8 @@ Transform:
   m_GameObject: {fileID: 1474749669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.89, z: -0.126}
-  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.20942667}
+  m_LocalPosition: {x: 0.2, y: 0.89, z: -0.16444}
+  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.1664267}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 868697480}
@@ -1779,8 +1779,8 @@ Transform:
   m_GameObject: {fileID: 1503395693}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.89, z: -0.369}
-  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.20942667}
+  m_LocalPosition: {x: 0.2, y: 0.89, z: -0.3879}
+  m_LocalScale: {x: 0.40035442, y: 0.795767, z: 0.1143068}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 868697480}
