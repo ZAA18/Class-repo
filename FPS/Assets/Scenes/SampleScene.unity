@@ -207,11 +207,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 3.91, z: 2.25}
+  m_LocalPosition: {x: 5.91, y: 5.95, z: 3.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1163415842}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1246,6 +1246,7 @@ GameObject:
   - component: {fileID: 1163415844}
   - component: {fileID: 1163415845}
   - component: {fileID: 1163415846}
+  - component: {fileID: 1163415847}
   m_Layer: 0
   m_Name: CHARACTER
   m_TagString: Untagged
@@ -1292,7 +1293,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1298714673}
-  - {fileID: 330585546}
   - {fileID: 516829267}
   - {fileID: 667743141}
   - {fileID: 338244093}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163415840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd60bbe7302ed1143a1dff458d1a8f26, type: 3}
   m_Name: 
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163415840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6a1dc690b0982458216aa9de07c0c6, type: 3}
   m_Name: 
@@ -1375,6 +1375,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1163415847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163415840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ef62e71c5e1bd419b7937a3910c9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  Gravity: -9.81
+  cameraTransform: {fileID: 330585546}
+  looksensitivity: 2
+  verticalLookLimit: 90
 --- !u!1 &1298714672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,6 +2157,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 2038490927}
