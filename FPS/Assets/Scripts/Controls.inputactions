@@ -9,16 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "fe12f620-c32b-41b7-94e8-6e512c35cfc0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "38ad89ac-c942-461a-bb11-e8aaa19241e7",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -192,23 +183,12 @@
                 },
                 {
                     "name": "",
-                    "id": "56ea7a2a-a21c-4a55-b1db-bf275c9a9cd0",
-                    "path": "<Mouse>/leftButton",
+                    "id": "285f746b-b403-4f61-b7b9-08b7c2b710da",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": ";aid scheme",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0b6fdc3b-6699-4b4e-adb5-357590a2f39d",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";aid scheme",
-                    "action": "Look",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -226,7 +206,7 @@
                     "isOR": false
                 },
                 {
-                    "devicePath": "<VirtualMouse>",
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

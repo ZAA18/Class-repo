@@ -63,11 +63,11 @@ public class fpcontroller : MonoBehaviour
 
     public void HandleLook()
     {
-        float mouseX = lookInput.x + looksensitivity;
-        float mouseY = lookInput.y + looksensitivity;
+        float mouseX = lookInput.x * looksensitivity;
+        float mouseY = lookInput.y * looksensitivity;
         VerticalRotation -= mouseY;
         VerticalRotation = Mathf.Clamp(VerticalRotation, -verticalLookLimit, verticalLookLimit);
-        cameraTransform.localRotation = Quaternion.Euler(VerticalRotation, 0f, 0f);
+       cameraTransform.localRotation = Quaternion.Euler(VerticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
 
