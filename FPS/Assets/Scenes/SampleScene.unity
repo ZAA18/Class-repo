@@ -207,11 +207,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0077998885, y: -0.009519781, z: -0.0041425745, w: 0.9999157}
-  m_LocalPosition: {x: -0.07, y: 0.1, z: 37}
-  m_LocalScale: {x: 0.29539606, y: 0.54839325, z: 15.317471}
+  m_LocalPosition: {x: -16.032375, y: -0.8013046, z: 8.764844}
+  m_LocalScale: {x: 1.1489608, y: 1.3087394, z: 0.7854434}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1036191504}
+  m_Father: {fileID: 552833676}
   m_LocalEulerAnglesHint: {x: -0.898, y: -1.087, z: -0.466}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416741347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
   m_Name: 
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416741347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -708,21 +708,9 @@ MonoBehaviour:
     m_ActionId: fe12f620-c32b-41b7-94e8-6e512c35cfc0
     m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 416741352}
-        m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
-        m_MethodName: HandleLook
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 38ad89ac-c942-461a-bb11-e8aaa19241e7
-    m_ActionName: 'Player/Look[/Mouse/leftButton,/Mouse/rightButton]'
+      m_Calls: []
+    m_ActionId: 4c8b3e42-8bc5-400c-8742-a12c700b4df4
+    m_ActionName: 'Player/LOOK[/Mouse/delta]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -744,7 +732,7 @@ CharacterController:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.49999997
@@ -929,6 +917,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 552833676}
+  - component: {fileID: 552833677}
+  - component: {fileID: 552833679}
+  - component: {fileID: 552833678}
+  - component: {fileID: 552833680}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -950,8 +942,158 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1036191504}
+  - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552833677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552833675}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  Gravity: -9.81
+  cameraTransform: {fileID: 330585546}
+  looksensitivity: 2
+  verticalLookLimit: 90
+--- !u!114 &552833678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552833675}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 43360f43aeaf41f478c8e09e6f39cfdf, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 552833677}
+        m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
+        m_MethodName: Handlemovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe12f620-c32b-41b7-94e8-6e512c35cfc0
+    m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 552833677}
+        m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
+        m_MethodName: HandleLook
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4c8b3e42-8bc5-400c-8742-a12c700b4df4
+    m_ActionName: 'Player/LOOK[/Mouse/delta]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: aid scheme
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 330585545}
+--- !u!143 &552833679
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552833675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &552833680
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552833675}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &667743140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,10 +1610,9 @@ GameObject:
   - component: {fileID: 1036191504}
   - component: {fileID: 1036191510}
   - component: {fileID: 1036191509}
-  - component: {fileID: 1036191508}
-  - component: {fileID: 1036191507}
   - component: {fileID: 1036191506}
-  - component: {fileID: 1036191505}
+  - component: {fileID: 1036191511}
+  - component: {fileID: 1036191512}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1488,30 +1629,12 @@ Transform:
   m_GameObject: {fileID: 1036191503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.76, y: 5.7, z: 6.94}
+  m_LocalPosition: {x: -15.76, y: -1.04, z: 6.94}
   m_LocalScale: {x: 3.891062, y: 2.386954, z: 0.049320098}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 330585546}
+  m_Children: []
   m_Father: {fileID: 552833676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1036191505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036191503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  Gravity: -9.81
-  cameraTransform: {fileID: 0}
-  looksensitivity: 2
-  verticalLookLimit: 90
 --- !u!114 &1036191506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,7 +1662,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1036191505}
+      - m_Target: {fileID: 1036191512}
         m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
         m_MethodName: Handlemovement
         m_Mode: 1
@@ -1555,7 +1678,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1036191505}
+      - m_Target: {fileID: 1036191512}
         m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
         m_MethodName: HandleLook
         m_Mode: 1
@@ -1567,53 +1690,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 38ad89ac-c942-461a-bb11-e8aaa19241e7
-    m_ActionName: 'Player/Look[/Mouse/leftButton,/Mouse/rightButton]'
+    m_ActionId: 4c8b3e42-8bc5-400c-8742-a12c700b4df4
+    m_ActionName: 'Player/LOOK[/Mouse/delta]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: aid scheme
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &1036191507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036191503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  Gravity: -9.81
-  cameraTransform: {fileID: 0}
-  looksensitivity: 2
-  verticalLookLimit: 90
---- !u!136 &1036191508
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036191503}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Camera: {fileID: 330585545}
 --- !u!23 &1036191509
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1667,6 +1750,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036191503}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &1036191511
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036191503}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.9999999
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1036191512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036191503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  Gravity: -9.81
+  cameraTransform: {fileID: 330585546}
+  looksensitivity: 50
+  verticalLookLimit: 90
 --- !u!1 &1163415840
 GameObject:
   m_ObjectHideFlags: 0
