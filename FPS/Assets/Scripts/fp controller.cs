@@ -54,11 +54,10 @@ public class fpcontroller : MonoBehaviour
         controller.Move(move * moveSpeed * Time.deltaTime);
 
         if (controller.isGrounded && velocity.y < 0)
-
+        
             velocity.y = -2f;
-        velocity.y += Gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
+            velocity.y += Gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
     }
 
     public void HandleLook()
@@ -67,8 +66,7 @@ public class fpcontroller : MonoBehaviour
         float mouseY = lookInput.y * looksensitivity;
         VerticalRotation -= mouseY;
         VerticalRotation = Mathf.Clamp(VerticalRotation, -verticalLookLimit, verticalLookLimit);
-       cameraTransform.localRotation = Quaternion.Euler(VerticalRotation, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(VerticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
-
 }
