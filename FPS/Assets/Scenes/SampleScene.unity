@@ -879,6 +879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   Gravity: -9.81
+  jumpHeight: 1.5
   cameraTransform: {fileID: 330585546}
   looksensitivity: 2
   verticalLookLimit: 90
@@ -2032,8 +2033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 15
   Gravity: -9.81
+  jumpHeight: 1.5
   cameraTransform: {fileID: 330585546}
   looksensitivity: 2
   verticalLookLimit: 90
@@ -2094,6 +2096,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4c8b3e42-8bc5-400c-8742-a12c700b4df4
     m_ActionName: 'Player/LOOK[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1036191511}
+        m_TargetAssemblyTypeName: fpcontroller, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f1c2361e-4ece-4fe0-b777-7dfbe44c0dd3
+    m_ActionName: 'Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonEast]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: aid scheme
   m_DefaultActionMap: Player
