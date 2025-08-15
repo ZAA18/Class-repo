@@ -19,6 +19,7 @@ public class fpcontroller : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletprefab;
     public Transform gunpoint;
+    public float bulletvelocity = 1000;
 
     [Header("Crouch")]
     public float crouchheight = 1f;
@@ -114,7 +115,7 @@ public class fpcontroller : MonoBehaviour
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
             if (rb !=null)
-            { rb.AddForce(gunpoint.forward * 1000f); // adjust force value as needed
+            { rb.AddForce(gunpoint.forward * bulletvelocity, ForceMode.Impulse); // adjust force value as needed
             }
         }
     }

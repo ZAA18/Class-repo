@@ -739,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e695f6d579349694b9b9695cb34d5a20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e695f6d579349694b9b9695cb34d5a20, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6476,7 +6476,7 @@ Transform:
   m_GameObject: {fileID: 1036191503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 141, y: 128, z: -118}
+  m_LocalPosition: {x: 141, y: 181, z: -118}
   m_LocalScale: {x: 6.019084, y: 8.553325, z: 3.8578682}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6549,7 +6549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f186b2e1eec2d24eb1032a7644dc028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  moveSpeed: 50
   Gravity: -9.81
   jumpHeight: 10
   cameraTransform: {fileID: 330585546}
