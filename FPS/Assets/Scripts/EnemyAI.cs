@@ -10,11 +10,10 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask WhatisGround, whatisPlayer;
 
-    
-    [Header("Patrolling")]
-    public Vector3 walkpoint;
-    bool walkPointSet;
-    float walkPointRange;
+
+    [Header("Patrol Waypoints")]
+    public Transform[] waypoints;
+    private int currentWaypointIndex = 0;
 
     [Header("Attacking")]
     public float TimebetweenAttacks;
@@ -53,20 +52,20 @@ public class EnemyAI : MonoBehaviour
             AttackPlayer();
     }
     // the function below patrol supports patrol
-    private void Patroling ()
+    private void Patroling()
     {
-        if (!walkPointSet) SearchWalkPoint();
-        if (walkPointSet)
-            agent.SetDestination(walkpoint);
+        if (waypoints.Length == 0) return;
 
-        Vector3 distanceToWalkPoint = transform.position - walkpoint;
+        agent.SetDestination(waypoints[currentWaypointIndex].position);
 
-        // walk point reached 
-        if (distanceToWalkPoint.magnitude < 1f)
-        { walkPointSet = false; }
+        // Check if enemy reached waypoint
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+        }
     }
 
-    private void SearchWalkPoint()
+    /*private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -78,6 +77,7 @@ public class EnemyAI : MonoBehaviour
 
 
     }
+    */
 
     private void ChasePlayer()
     { agent.SetDestination(player.position); }
