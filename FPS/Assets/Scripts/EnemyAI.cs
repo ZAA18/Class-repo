@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
     public float sightrange, attackrange;
     public bool playerInSightRange, playerinAttackRange;
 
-    //health and damage
+    
     [Header ("States")]
     public float health;
 
@@ -46,9 +46,9 @@ public class EnemyAI : MonoBehaviour
 
         if (!playerInSightRange && !playerinAttackRange) 
             Patroling();
-        if (playerInSightRange && !playerinAttackRange)
+        else if (playerInSightRange && !playerinAttackRange)
             ChasePlayer();
-        if (playerinAttackRange && playerInSightRange)
+        else if (playerinAttackRange && playerInSightRange)
             AttackPlayer();
     }
     // the function below patrol supports patrol
@@ -63,30 +63,22 @@ public class EnemyAI : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
-    }
-
-    /*private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkpoint = new Vector3(transform.position.x + randomX, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatisGround))
-            walkPointSet = true;
 
 
     }
-    */
+
+ 
 
     private void ChasePlayer()
     { agent.SetDestination(player.position); }
 
     private void AttackPlayer()
-    { //Make sure enemy does not move
+    { 
+        
+        //Make sure enemy does not move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+       // transform.LookAt(player); // did this because i want the nav to control the rotation of the player, its a bit faster now
 
         if (!alreadyAttacked)
 
