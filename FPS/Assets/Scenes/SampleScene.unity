@@ -2485,7 +2485,7 @@ Transform:
   m_GameObject: {fileID: 160862967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.3, y: 0, z: 0}
+  m_LocalPosition: {x: 113.5, y: -13.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6599,7 +6599,7 @@ Transform:
   m_GameObject: {fileID: 370179224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 102.7}
+  m_LocalPosition: {x: 141.71, y: -4.04, z: 55.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6615,7 +6615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370427292}
   m_Layer: 0
-  m_Name: Patrol points (13)
+  m_Name: S - THREE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6630,7 +6630,7 @@ Transform:
   m_GameObject: {fileID: 370427291}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.00107, y: -39.387848, z: -95.91918}
+  m_LocalPosition: {x: -118.7, y: -144.91, z: 95.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7047,7 +7047,7 @@ Transform:
   m_GameObject: {fileID: 380779114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 102.7}
+  m_LocalPosition: {x: -76.547, y: -5.527, z: -236.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7465,7 +7465,7 @@ Transform:
   m_GameObject: {fileID: 407157867}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 102.7}
+  m_LocalPosition: {x: 97.7, y: -18.4, z: -173.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9344,7 +9344,7 @@ Transform:
   m_GameObject: {fileID: 547236012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.6, y: 0, z: -63.3}
+  m_LocalPosition: {x: 11.24, y: -5.2, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10783,7 +10783,7 @@ Transform:
   m_GameObject: {fileID: 662138385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.3, y: 0, z: -4.5}
+  m_LocalPosition: {x: 128.7, y: -12.25, z: -56.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10959,7 +10959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684135598}
   m_Layer: 0
-  m_Name: Patrol points (12)
+  m_Name: S - TWO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10974,7 +10974,7 @@ Transform:
   m_GameObject: {fileID: 684135597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.00107, y: -39.387848, z: -95.91918}
+  m_LocalPosition: {x: -13.4, y: -150.3, z: 46.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11009,7 +11009,7 @@ Transform:
   m_GameObject: {fileID: 684969441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -116.5, y: 0, z: 50.6}
+  m_LocalPosition: {x: 9.7, y: -16, z: -363.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11489,7 +11489,7 @@ Transform:
   m_GameObject: {fileID: 722343126}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -116.5, y: 0, z: 50.6}
+  m_LocalPosition: {x: -134.6, y: -14.2, z: -317.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12667,7 +12667,7 @@ Transform:
   m_GameObject: {fileID: 808726250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.6, y: 0, z: -63.3}
+  m_LocalPosition: {x: 11.4, y: -2.6, z: -3.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14822,7 +14822,7 @@ Transform:
   m_GameObject: {fileID: 990302654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -116.5, y: 0, z: 50.6}
+  m_LocalPosition: {x: 161.5, y: 0, z: 133.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15434,7 +15434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035108980}
   m_Layer: 0
-  m_Name: Patrol points (14)
+  m_Name: 'S - ONE '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15449,7 +15449,7 @@ Transform:
   m_GameObject: {fileID: 1035108979}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.00107, y: -39.387848, z: -95.91918}
+  m_LocalPosition: {x: -180, y: -161.9, z: -186.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17321,7 +17321,7 @@ GameObject:
   - component: {fileID: 1162068063}
   - component: {fileID: 1162068062}
   m_Layer: 0
-  m_Name: SECURITY ONE (8)
+  m_Name: 'SECURITY ONE '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17335,14 +17335,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162068060}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.025291404, y: 0.66808254, z: 0.028132197, w: 0.74312496}
+  m_LocalRotation: {x: 0.014409268, y: 0.7122786, z: -0.01813056, w: 0.7015147}
   m_LocalPosition: {x: -201.77, y: -156.6, z: -190.63}
   m_LocalScale: {x: 4.635847, y: 7.584665, z: 5.010272}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1976116034}
   m_Father: {fileID: 1002761498}
-  m_LocalEulerAnglesHint: {x: -4.311, y: 83.895, z: 0.461}
+  m_LocalEulerAnglesHint: {x: 2.639, y: 90.866, z: -0.282}
 --- !u!195 &1162068062
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17386,10 +17386,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   waypoints:
-  - {fileID: 1528770725}
-  - {fileID: 8411755}
-  - {fileID: 1241285384}
-  - {fileID: 1082121770}
+  - {fileID: 808726251}
+  - {fileID: 1518164820}
+  - {fileID: 370179225}
+  - {fileID: 990302655}
   TimebetweenAttacks: 0
   projitile: {fileID: 376927919125999624, guid: f80efbff31cfe074b94e7a789f5f8aec, type: 3}
   sightrange: 80
@@ -17774,7 +17774,7 @@ Transform:
   m_GameObject: {fileID: 1194900312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.3, y: 0, z: 0}
+  m_LocalPosition: {x: -13.6, y: -6.1, z: -120.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20468,10 +20468,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   waypoints:
-  - {fileID: 1528770725}
-  - {fileID: 8411755}
-  - {fileID: 1241285384}
-  - {fileID: 1082121770}
+  - {fileID: 353454242}
+  - {fileID: 838086639}
+  - {fileID: 2120439898}
+  - {fileID: 662138386}
   TimebetweenAttacks: 0
   projitile: {fileID: 376927919125999624, guid: f80efbff31cfe074b94e7a789f5f8aec, type: 3}
   sightrange: 80
@@ -23119,7 +23119,7 @@ Transform:
   m_GameObject: {fileID: 1518164819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.3, y: 0, z: 0}
+  m_LocalPosition: {x: 65.8, y: -6.3, z: 101.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24670,7 +24670,7 @@ GameObject:
   - component: {fileID: 1633169275}
   - component: {fileID: 1633169274}
   m_Layer: 0
-  m_Name: SECURITY ONE (9)
+  m_Name: SECURITY TWO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24735,10 +24735,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   waypoints:
-  - {fileID: 1528770725}
-  - {fileID: 8411755}
-  - {fileID: 1241285384}
-  - {fileID: 1082121770}
+  - {fileID: 1932789434}
+  - {fileID: 1194900313}
+  - {fileID: 380779115}
+  - {fileID: 722343127}
   TimebetweenAttacks: 0
   projitile: {fileID: 376927919125999624, guid: f80efbff31cfe074b94e7a789f5f8aec, type: 3}
   sightrange: 80
@@ -27998,7 +27998,7 @@ GameObject:
   - component: {fileID: 1839225789}
   - component: {fileID: 1839225788}
   m_Layer: 0
-  m_Name: SECURITY ONE (10)
+  m_Name: SECURITY THREE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28063,10 +28063,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   waypoints:
-  - {fileID: 1528770725}
-  - {fileID: 8411755}
-  - {fileID: 1241285384}
-  - {fileID: 1082121770}
+  - {fileID: 547236013}
+  - {fileID: 160862968}
+  - {fileID: 407157868}
+  - {fileID: 684969442}
   TimebetweenAttacks: 0
   projitile: {fileID: 376927919125999624, guid: f80efbff31cfe074b94e7a789f5f8aec, type: 3}
   sightrange: 80
@@ -29263,7 +29263,7 @@ Transform:
   m_GameObject: {fileID: 1932789433}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.6, y: 0, z: -63.3}
+  m_LocalPosition: {x: 1.1, y: -15.4, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
