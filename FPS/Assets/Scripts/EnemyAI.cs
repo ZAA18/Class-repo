@@ -78,7 +78,7 @@ public class EnemyAI : MonoBehaviour
         //Make sure enemy does not move
         agent.SetDestination(transform.position);
 
-       // transform.LookAt(player); // did this because i want the nav to control the rotation of the player, its a bit faster now
+        transform.LookAt(player); // did this because i want the nav to control the rotation of the player, its a bit faster now
 
         if (!alreadyAttacked)
 
