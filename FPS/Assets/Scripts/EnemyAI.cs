@@ -10,25 +10,27 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask WhatisGround, whatisPlayer;
 
-    //patroling
+    
+    [Header("Patrolling")]
     public Vector3 walkpoint;
     bool walkPointSet;
     float walkPointRange;
 
-    //Attacking
+    [Header("Attacking")]
     public float TimebetweenAttacks;
     bool alreadyAttacked;
     public GameObject projitile;
 
-    //States
+    
+    [Header ("States")]
     public float sightrange, attackrange;
     public bool playerInSightRange, playerinAttackRange;
 
     //health and damage
-
+    [Header ("States")]
     public float health;
 
-    
+   
 
 
     public void Awake()
@@ -112,11 +114,12 @@ public class EnemyAI : MonoBehaviour
     { Destroy(gameObject);
     }
 
-    private void onDrwGizmosselected()
+    /*private void onDrwGizmosselected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackrange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightrange);
     }
+    */
 }
