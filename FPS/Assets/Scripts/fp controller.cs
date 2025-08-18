@@ -35,7 +35,8 @@ public class fpcontroller : MonoBehaviour
 
     public float pickupRange = 3f;
     public Transform holdpoint;
-   // private pickUpObject held
+    private PickUp heldPoint;
+
 
     [SerializeField] private HEALTHSYTEM healthbar;
 
@@ -99,6 +100,33 @@ public class fpcontroller : MonoBehaviour
             moveSpeed = originalmovespeed;
         }
     }
+
+    public void OnPickUp(InputAction.CallbackContext context)
+    {
+
+        if (!context.performed) return;
+        if (heldPoint == null)
+        {
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+    
+                if (Physics.Raycast (ray,out RaycastHit hit, pickupRange))
+                { PickUp heldPoint = hit.collider.GetComponent<PickUp>();
+           
+            if (heldPoint != null)
+
+                { heldPoint.Pick(holdpoint);
+                    //holdpoint = heldPoint;
+                }
+            
+            }
+                
+                }
+        else
+        {
+            heldPoint.Drop();
+            heldPoint = null;
+        }
+                }
 
     public void Handlemovement()
     {
