@@ -27,6 +27,12 @@ public class fpcontroller : MonoBehaviour
     public float crouchspeed = 2.5f;
     private float originalmovespeed;
 
+    [Header("Health System")]
+    [SerializeField] float maxhealth = 100;
+    float currentHealth;
+
+    [SerializeField] private HEALTHSYTEM healthbar;
+
 
     private CharacterController controller;
     private Vector2 moveInput;
@@ -40,6 +46,7 @@ public class fpcontroller : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        currentHealth = maxhealth;
     }
 
     // update function

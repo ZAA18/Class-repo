@@ -29,7 +29,11 @@ public class EnemyAI : MonoBehaviour
     [Header ("States")]
     public float health;
 
-   
+    [Header("Trying to implement bullet system")]
+    public GameObject bulletPrefab;
+    Rigidbody rb;
+
+
 
 
     public void Awake()
@@ -84,7 +88,8 @@ public class EnemyAI : MonoBehaviour
 
         {
             Invoke(nameof(ResetAttack), TimebetweenAttacks);
-            Rigidbody rb = Instantiate(projitile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+          //  DestroyBullet();
+            rb = Instantiate(projitile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
         }
@@ -92,6 +97,7 @@ public class EnemyAI : MonoBehaviour
 
     public void ResetAttack()
     { alreadyAttacked = false;
+        
     }
 
     public void TakeDamage(int damage)
@@ -104,6 +110,11 @@ public class EnemyAI : MonoBehaviour
 
     private void DestroyEnemy()
     { Destroy(gameObject);
+    }
+
+    /*private void DestroyBullet()
+    {
+        Destroy(projitile);
     }
 
     /*private void onDrwGizmosselected()
