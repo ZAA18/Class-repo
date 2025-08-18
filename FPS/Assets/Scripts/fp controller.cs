@@ -31,6 +31,12 @@ public class fpcontroller : MonoBehaviour
     [SerializeField] float maxhealth = 100;
     float currentHealth;
 
+    [Header("Pickup Settings")]
+
+    public float pickupRange = 3f;
+    public Transform holdpoint;
+   // private pickUpObject held
+
     [SerializeField] private HEALTHSYTEM healthbar;
 
 
@@ -46,7 +52,8 @@ public class fpcontroller : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        currentHealth = maxhealth;
+       // currentHealth = maxhealth;
+       // healthbar.UpdatehealthBar( maxhealth, currentHealth);
     }
 
     // update function
