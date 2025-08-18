@@ -101,32 +101,6 @@ public class fpcontroller : MonoBehaviour
         }
     }
 
-    public void OnPickUp(InputAction.CallbackContext context)
-    {
-
-        if (!context.performed) return;
-        if (heldPoint == null)
-        {
-            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-    
-                if (Physics.Raycast (ray,out RaycastHit hit, pickupRange))
-                { PickUp heldPoint = hit.collider.GetComponent<PickUp>();
-           
-            if (heldPoint != null)
-
-                { heldPoint.Pick(holdpoint);
-                    //holdpoint = heldPoint;
-                }
-            
-            }
-                
-                }
-        else
-        {
-            heldPoint.Drop();
-            heldPoint = null;
-        }
-                }
 
     public void Handlemovement()
     {
