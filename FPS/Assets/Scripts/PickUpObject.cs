@@ -11,11 +11,7 @@ public class PickUpObject : MonoBehaviour
         rb = GetComponent<Rigidbody>();   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void Pick( Transform holdPoint)
     {

@@ -309,7 +309,7 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";keyboard and Mouse",
                     "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
