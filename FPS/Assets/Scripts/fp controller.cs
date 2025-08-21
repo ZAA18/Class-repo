@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class FPCONTROLLER : MonoBehaviour
 {
@@ -57,11 +58,16 @@ public class FPCONTROLLER : MonoBehaviour
     }
 
     // update function
-    void Update()
+   private void Update()
     {
 
         Handlemovement();
         HandleLook();
+
+        if (heldObject !=null)
+        {
+            heldObject.MoveToHoldPoint(holdpoint.position);
+        }
     }
 
 
@@ -112,8 +118,21 @@ public class FPCONTROLLER : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
+                if (pickUp !=null)
+                {
+                    pickUp.Pick(holdpoint);
+                    heldObject = pickUp;
+
+                }
 
             }
+        }
+        else
+        { heldObject.Drop();
+          heldObject = null;
+
+            
+
         }
     }
 
