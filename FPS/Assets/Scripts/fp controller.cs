@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 
-public class fpcontroller : MonoBehaviour
+public class FPCONTROLLER : MonoBehaviour
 {
 
     [Header("movement Settings")]
