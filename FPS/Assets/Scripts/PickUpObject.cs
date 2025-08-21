@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public class PickUpObject : MonoBehaviour
 {
 
     private Rigidbody rb;
