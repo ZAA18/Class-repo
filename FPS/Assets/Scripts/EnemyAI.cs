@@ -97,7 +97,7 @@ public class EnemyAI : MonoBehaviour
 
     public void ResetAttack()
     { alreadyAttacked = false;
-        Destroy(rb);
+       // Destroy(rb);
         
     }
 
@@ -112,6 +112,9 @@ public class EnemyAI : MonoBehaviour
     private void DestroyEnemy()
     { Destroy(gameObject);
     }
+
+
+   
 
     /*private void DestroyBullet()
     {

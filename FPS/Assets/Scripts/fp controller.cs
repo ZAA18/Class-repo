@@ -34,7 +34,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
-    public Transform holdpoint;
+    public Transform holdPoint;
     private PickUpObject heldObject;
 
 
@@ -66,7 +66,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         if (heldObject !=null)
         {
-            heldObject.MoveToHoldPoint(holdpoint.position);
+            heldObject.MoveToHoldPoint(holdPoint.position);
         }
     }
 
@@ -120,7 +120,7 @@ public class FPCONTROLLER : MonoBehaviour
                 PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
                 if (pickUp !=null)
                 {
-                    pickUp.PickUp(holdpoint);
+                    pickUp.PickUp(holdPoint);
                     heldObject = pickUp;
 
                 }
