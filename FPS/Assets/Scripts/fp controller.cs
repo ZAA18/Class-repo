@@ -120,7 +120,7 @@ public class FPCONTROLLER : MonoBehaviour
                 PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
                 if (pickUp !=null)
                 {
-                    pickUp.Pick(holdpoint);
+                    pickUp.PickUp(holdpoint);
                     heldObject = pickUp;
 
                 }
