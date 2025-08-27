@@ -106,7 +106,7 @@ public class FPCONTROLLER : MonoBehaviour
         }
     }
 
-    public void onPickUp(InputAction. CallbackContext context)
+    public void OnPickUp(InputAction. CallbackContext context)
     {
         if (!context.performed) return;
 
