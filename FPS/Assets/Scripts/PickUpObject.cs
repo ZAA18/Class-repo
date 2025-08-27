@@ -16,7 +16,7 @@ public class PickUpObject : MonoBehaviour
     public void PickUp( Transform holdPoint)
     {
         rb.useGravity = false;
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         transform.SetParent(holdPoint);
