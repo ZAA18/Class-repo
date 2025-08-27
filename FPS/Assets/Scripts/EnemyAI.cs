@@ -97,6 +97,7 @@ public class EnemyAI : MonoBehaviour
 
     public void ResetAttack()
     { alreadyAttacked = false;
+        Destroy(rb);
         
     }
 
