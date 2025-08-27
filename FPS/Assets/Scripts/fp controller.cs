@@ -37,6 +37,10 @@ public class FPCONTROLLER : MonoBehaviour
     public Transform holdPoint;
     private PickUpObject heldObject;
 
+    [Header("Throw Settings")]
+    public float throwForce = 10f;
+    public float throwUpwardBoost = 1f;
+
 
     [SerializeField] private HEALTHSYTEM healthbar;
 
@@ -134,6 +138,19 @@ public class FPCONTROLLER : MonoBehaviour
             
 
         }
+    }
+
+    public void OnThrow(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (heldObject == null) return;
+
+        Vector3 dir = cameraTransform.forward;
+        Vector3 impulse = dir * throwForce + Vector3.up * throwUpwardBoost;
+
+       // heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
+        heldObject = null;
+
     }
 
 
