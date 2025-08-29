@@ -1,23 +1,25 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-
-public class Bullet : MonoBehaviour
+public class Enemybullet : MonoBehaviour
 {
-
     [SerializeField] private float maxhealth = 50;
 
     private float currentHealth;
 
-    [SerializeField] private HEALTHSYTEM HEALTHSYTEM;
-
-    public void Start()
+    private HEALTHSYTEM HEALTHSYTEM;
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         currentHealth = maxhealth;
         HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -29,11 +31,10 @@ public class Bullet : MonoBehaviour
             HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
         }
 
-        if (collision.gameObject.CompareTag ("wall"))
+        if (collision.gameObject.CompareTag("wall"))
         {
             print("hit the wall" + collision.gameObject.name + "!");
             Destroy(gameObject);
         }
     }
 }
-

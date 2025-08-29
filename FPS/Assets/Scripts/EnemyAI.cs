@@ -20,14 +20,14 @@ public class EnemyAI : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projitile;
 
-    
-    [Header ("States")]
+
+    [Header("States")]
     public float sightrange, attackrange;
     public bool playerInSightRange, playerinAttackRange;
 
-    
-    [Header ("States")]
-    public float health;
+
+    [Header("States")]
+    private float currentHealth;
 
     [Header("Trying to implement bullet system")]
     public GameObject bulletPrefab;
@@ -102,9 +102,9 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    { health -= damage;
+    { currentHealth -= damage;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
             Invoke(nameof(DestroyEnemy), 0.5f);
 
     }
