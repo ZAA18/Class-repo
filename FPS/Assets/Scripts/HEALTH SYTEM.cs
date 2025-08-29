@@ -24,6 +24,7 @@ public class HEALTHSYTEM : MonoBehaviour
     {
         currentHealth = maxHealth;
         //cam = Camera.main;
+        UpdateHealthBar();
     }
 
     // Update is called once per frame
@@ -33,8 +34,32 @@ public class HEALTHSYTEM : MonoBehaviour
         Debug.Log("the currenthealth on the health system script is" + HealthCheck);
     }
 
-    public void UpdatehealthBar(float maxhealth, float currentHealth)
-    { //healthbar.fillAmount = (currentHealth / maxhealth);
+    /*public void UpdatehealthBar(float maxhealth, float currentHealth)
+    { healthbar.fillAmount = (currentHealth / maxhealth);
         HealthCheck = (currentHealth / maxhealth);
+    }
+    */
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthBar();
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+    }
+
+    private void UpdateHealthBar()
+    { if (healthbar2 != null)
+            healthbar2.value = currentHealth / maxHealth;
+    }
+
+    private void Die ()
+    {
+        Debug.Log(gameObject.name + "has died");
     }
 }

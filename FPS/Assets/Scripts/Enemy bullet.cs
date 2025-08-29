@@ -12,7 +12,7 @@ public class Enemybullet : MonoBehaviour
     void Start()
     {
         currentHealth = maxhealth;
-        HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
+    //    HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Enemybullet : MonoBehaviour
             print("hit" + collision.gameObject.name + "!");
             currentHealth -= Random.Range(0.5f, 1.5f);
             Destroy(gameObject);
-            HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
+         //   HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
         }
 
         if (collision.gameObject.CompareTag("wall"))
