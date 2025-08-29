@@ -154,6 +154,7 @@ public class FPCONTROLLER : MonoBehaviour
     }
 
 
+
     public void Handlemovement()
     {
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
