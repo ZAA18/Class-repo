@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     private float currentHealth;
 
     [SerializeField] private HEALTHSYTEM HEALTHSYTEM;
+    public float healthcheck = 100f;
+    public float damage = 0.8f;
+
 
     public void Start()
     {
@@ -18,6 +21,11 @@ public class Bullet : MonoBehaviour
         HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
     }
 
+    public void Update()
+    {
+        Debug.Log("This is the currenthealth in the bullet script" + currentHealth);
+        HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,7 +33,12 @@ public class Bullet : MonoBehaviour
         {
             print("hit" + collision.gameObject.name + "!");
             currentHealth -= Random.Range(0.5f, 1.5f);
+            Debug.Log("the Health now is :" + currentHealth);
+            healthcheck -= damage;
+            Debug.Log("the health is now" + healthcheck);
             Destroy(gameObject);
+
+
             HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
         }
 
@@ -33,6 +46,7 @@ public class Bullet : MonoBehaviour
         {
             print("hit the wall" + collision.gameObject.name + "!");
             Destroy(gameObject);
+
         }
     }
 }
