@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.ProBuilder.MeshOperations;
 public class CharacterMovement : MonoBehaviour
 {
     private CharacterController controller;
@@ -17,6 +18,12 @@ public class CharacterMovement : MonoBehaviour
     bool isGrounded;
     bool isMoving;
     private Vector3 lastposition = new Vector3(0f,0f,0f);
+
+
+    [Header("facebook")]
+        public string Name = "";
+    public string Surname = "";
+
     
     void Start()
     {

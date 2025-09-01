@@ -19,6 +19,11 @@ public class HEALTHSYTEM : MonoBehaviour
     [Header("UI SETTINGS")]
     [SerializeField] private UnityEngine.UI.Slider healthbar2;
 
+    [Header("SLIDER ANIMATION")]
+    [SerializeField] private float smoothSpeed = 2f;
+
+    private float targetValue;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +37,7 @@ public class HEALTHSYTEM : MonoBehaviour
     {
         //transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
         Debug.Log("the currenthealth on the health system script is" + HealthCheck);
+        healthbar2.value = Mathf.Lerp(healthbar2.value, targetValue, Time.deltaTime * smoothSpeed);
     }
 
     /*public void UpdatehealthBar(float maxhealth, float currentHealth)
@@ -44,7 +50,11 @@ public class HEALTHSYTEM : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthBar();
+
+        targetValue = currentHealth / maxHealth;
+       
+        
+        UpdateHealthBar(); // we call this one after the damage
 
         if (currentHealth <= 0)
         {
