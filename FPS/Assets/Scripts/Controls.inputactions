@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Door",
+                    "type": "Button",
+                    "id": "5b7c0885-b320-4ad3-8b31-7d9e05c84c05",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -342,6 +351,17 @@
                     "processors": "",
                     "groups": ";keyboard and Mouse",
                     "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbb0bef9-148c-443e-87f7-ee5dc8c10d66",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Door",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

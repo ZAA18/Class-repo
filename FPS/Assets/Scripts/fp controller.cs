@@ -20,7 +20,7 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletprefab;
     public Transform gunpoint;
-    public float bulletvelocity = 1000;
+    public float bulletvelocity = 300;
 
     [Header("Crouch")]
     public float crouchheight = 1f;
@@ -40,6 +40,9 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("Throw Settings")]
     public float throwForce = 10f;
     public float throwUpwardBoost = 1f;
+
+    [Header("Door System")]
+    public float interactRange = 3f;
 
 
     [SerializeField] private HEALTHSYTEM healthbar;
@@ -187,6 +190,25 @@ public class FPCONTROLLER : MonoBehaviour
             { rb.AddForce(gunpoint.forward * bulletvelocity, ForceMode.Impulse); // adjust force value as needed
             }
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+
+        if (!context.performed) return;
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
+        {
+
+            //Only allow objects
+            if (hit.collider.CompareTag("Switchable"))
+            { }
+        }
+             
+    
+    
     }
 }
 

@@ -37,5 +37,10 @@ public class BulletBoth : MonoBehaviour
             Debug.Log("Bullet hit a wall!");
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        { Debug.Log("Bullet hit the ground");
+            Destroy(gameObject);
+        }
     }
 }
