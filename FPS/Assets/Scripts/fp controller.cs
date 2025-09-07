@@ -204,7 +204,14 @@ public class FPCONTROLLER : MonoBehaviour
 
             //Only allow objects
             if (hit.collider.CompareTag("Switchable"))
-            { }
+            {
+
+                var switcher = hit.collider.GetComponent<DoorSystem>();
+                if (switcher != null)
+                {
+                    switcher.ToggleMaterial();
+                }
+            }
         }
              
     

@@ -10,6 +10,7 @@ TagManager:
   - wall
   - pickup
   - Pickup
+  - Switchable
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3334045522181036117}
   - component: {fileID: -803277824183032367}
   - component: {fileID: 1059042778561415298}
+  - component: {fileID: -7767250100821265634}
   m_Layer: 0
   m_Name: Bullet 1
   m_TagString: Untagged
@@ -168,3 +169,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhealth: 50
+--- !u!114 &-7767250100821265634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376927919125999624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa4681e07808ef4b88c858210ebd337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  lifetime: 3
