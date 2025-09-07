@@ -90,7 +90,7 @@ public class EnemyAI : MonoBehaviour
             Invoke(nameof(ResetAttack), TimebetweenAttacks);
           //  DestroyBullet();
             rb = Instantiate(projitile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 50f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
         }
     }

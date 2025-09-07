@@ -26,7 +26,7 @@ public class Enemybullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("hit" + collision.gameObject.name + "!");
-            currentHealth -= Random.Range(0.5f, 1.5f);
+            currentHealth -= Random.Range(0.1f, 0.5f);
             Destroy(gameObject);
          //   HEALTHSYTEM.UpdatehealthBar(maxhealth, currentHealth);
         }
