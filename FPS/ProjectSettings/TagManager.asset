@@ -11,6 +11,8 @@ TagManager:
   - pickup
   - Pickup
   - Switchable
+  - Ground
+  - Floor
   layers:
   - Default
   - TransparentFX

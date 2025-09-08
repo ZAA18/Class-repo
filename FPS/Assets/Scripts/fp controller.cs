@@ -25,7 +25,9 @@ public class FPCONTROLLER : MonoBehaviour
     public float bulletvelocity = 500;
     // for the particle system
     public GameObject fire;
-    public GameObject HitPoint;
+    public GameObject HitPoint1;
+    public GameObject HitPoint2;
+    public GameObject HitPoint3;
 //new code
 
 
@@ -235,11 +237,26 @@ public class FPCONTROLLER : MonoBehaviour
 
 
             GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
-            GameObject b = Instantiate(HitPoint, hit.point, Quaternion.identity);
 
             Destroy(a, 1);
-            Destroy(b, 1);
 
+            if (hit.transform.gameObject.CompareTag("Target"))
+            { GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
+                Destroy(b, 1);
+            }
+
+            else if (hit.transform.gameObject.CompareTag("Wall"))
+            {
+                GameObject C = Instantiate(HitPoint2, hit.point, Quaternion.identity);
+                Destroy(C, 1);
+            }
+
+            else if (hit.transform.gameObject.CompareTag("Floor"))
+            {
+                GameObject D = Instantiate(HitPoint3, hit.point, Quaternion.identity);
+                Destroy(D, 1);
+            }
+            
             EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
 
             if (enemy != null)
@@ -247,6 +264,7 @@ public class FPCONTROLLER : MonoBehaviour
                 enemy.TakeDamage(2);
             }
             
+           
         }
     }
 }

@@ -19,6 +19,11 @@ public class EnemyAI : MonoBehaviour
     public float TimebetweenAttacks;
     bool alreadyAttacked;
     public GameObject projitile;
+    public Transform gunpoint;
+    public GameObject fire;
+    public GameObject HitPoint1;
+    public GameObject HitPoint2;
+    public GameObject HitPoint3;
 
 
     [Header("States")]
@@ -53,7 +58,7 @@ public class EnemyAI : MonoBehaviour
         else if (playerInSightRange && !playerinAttackRange)
             ChasePlayer();
         else if (playerinAttackRange && playerInSightRange)
-            // AttackPlayer();
+            AttackPlayer();
             Debug.Log("Attacking Player");
     }
     // the function below patrol supports patrol
@@ -77,25 +82,67 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     { agent.SetDestination(player.position); }
 
-   /* private void AttackPlayer()
-    { 
-        
-        //Make sure enemy does not move
-        agent.SetDestination(transform.position);
+    /* private void AttackPlayer()
+     { 
 
-        transform.LookAt(player); // did this because i want the nav to control the rotation of the player, its a bit faster now
+         //Make sure enemy does not move
+         agent.SetDestination(transform.position);
 
-        if (!alreadyAttacked)
+         transform.LookAt(player); // did this because i want the nav to control the rotation of the player, its a bit faster now
+
+         if (!alreadyAttacked)
+
+         {
+             Invoke(nameof(ResetAttack), TimebetweenAttacks);
+           //  DestroyBullet();
+             rb = Instantiate(projitile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+             rb.AddForce(transform.forward * 50f, ForceMode.Impulse);
+           //  rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+         }
+     }
+    */
+
+    private void AttackPlayer()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(gunpoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
 
         {
-            Invoke(nameof(ResetAttack), TimebetweenAttacks);
-          //  DestroyBullet();
-            rb = Instantiate(projitile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 50f, ForceMode.Impulse);
-          //  rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+
+
+            GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
+
+            Destroy(a, 1);
+
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
+                Destroy(b, 1);
+            }
+
+            else if (hit.transform.gameObject.CompareTag("Wall"))
+            {
+                GameObject C = Instantiate(HitPoint2, hit.point, Quaternion.identity);
+                Destroy(C, 1);
+            }
+
+            else if (hit.transform.gameObject.CompareTag("Floor"))
+            {
+                GameObject D = Instantiate(HitPoint3, hit.point, Quaternion.identity);
+                Destroy(D, 1);
+            }
+
+            EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(2);
+            }
         }
-    }
-   */
+    
+
+        }
 
     public void ResetAttack()
     { alreadyAttacked = false;
