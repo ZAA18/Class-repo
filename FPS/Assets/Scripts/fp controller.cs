@@ -234,8 +234,19 @@ public class FPCONTROLLER : MonoBehaviour
         { Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 
 
-            Instantiate(fire, gunpoint.position, Quaternion.identity);
-            Instantiate(HitPoint, hit.point, Quaternion.identity);
+            GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
+            GameObject b = Instantiate(HitPoint, hit.point, Quaternion.identity);
+
+            Destroy(a, 1);
+            Destroy(b, 1);
+
+            EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(2);
+            }
+            
         }
     }
 }

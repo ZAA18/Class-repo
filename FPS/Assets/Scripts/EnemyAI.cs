@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
 
 
     [Header("States")]
-    private float currentHealth;
+    private float currentHealth = 10;
 
     [Header("Trying to implement bullet system")]
     public GameObject bulletPrefab;
