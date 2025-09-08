@@ -42,7 +42,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwUpwardBoost = 1f;
 
     [Header("Door System")]
-    public float interactRange = 3f;
+    public float interactRange = 50f;
 
 
     [SerializeField] private HEALTHSYTEM healthbar;
