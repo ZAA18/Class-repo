@@ -12,7 +12,7 @@ public class HEALTHSYTEM : MonoBehaviour
     // private Camera cam;
 
     [Header("health Settings")]
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float maxHealth = 1000f;
     private float currentHealth;
     private float HealthCheck;
 
@@ -20,7 +20,7 @@ public class HEALTHSYTEM : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Slider healthbar2;
 
     [Header("SLIDER ANIMATION")]
-    [SerializeField] private float smoothSpeed = 2f;
+    [SerializeField] private float smoothSpeed = 0.1f;
 
     private float targetValue;
 
@@ -51,7 +51,7 @@ public class HEALTHSYTEM : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        targetValue = currentHealth / maxHealth;
+        targetValue = currentHealth;
        
         
         UpdateHealthBar(); // we call this one after the damage

@@ -20,7 +20,7 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletprefab;
     public Transform gunpoint;
-    public float bulletvelocity = 300;
+    public float bulletvelocity = 500;
 
     [Header("Crouch")]
     public float crouchheight = 1f;
@@ -29,7 +29,7 @@ public class FPCONTROLLER : MonoBehaviour
     private float originalmovespeed;
 
     [Header("Health System")]
-    [SerializeField] float maxhealth = 100;
+    [SerializeField] float maxhealth = 2000;
     float currentHealth;
 
     [Header("Pickup Settings")]
@@ -42,7 +42,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwUpwardBoost = 1f;
 
     [Header("Door System")]
-    public float interactRange = 50f;
+    public float interactRange = 3f;
 
 
     [SerializeField] private HEALTHSYTEM healthbar;

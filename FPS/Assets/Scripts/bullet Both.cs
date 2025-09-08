@@ -42,5 +42,6 @@ public class BulletBoth : MonoBehaviour
         { Debug.Log("Bullet hit the ground");
             Destroy(gameObject);
         }
+
     }
 }
