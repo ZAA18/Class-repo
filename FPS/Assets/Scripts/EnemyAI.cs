@@ -48,12 +48,13 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightrange, whatisPlayer);
         playerinAttackRange = Physics.CheckSphere(transform.position, attackrange, whatisPlayer);
 
-        if (!playerInSightRange && !playerinAttackRange) 
+        if (!playerInSightRange && !playerinAttackRange)
             Patroling();
         else if (playerInSightRange && !playerinAttackRange)
             ChasePlayer();
         else if (playerinAttackRange && playerInSightRange)
-            AttackPlayer();
+            // AttackPlayer();
+            Debug.Log("Attacking Player");
     }
     // the function below patrol supports patrol
     private void Patroling()
@@ -76,7 +77,7 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     { agent.SetDestination(player.position); }
 
-    private void AttackPlayer()
+   /* private void AttackPlayer()
     { 
         
         //Make sure enemy does not move
@@ -94,6 +95,7 @@ public class EnemyAI : MonoBehaviour
           //  rb.AddForce(transform.up * 8f, ForceMode.Impulse);
         }
     }
+   */
 
     public void ResetAttack()
     { alreadyAttacked = false;

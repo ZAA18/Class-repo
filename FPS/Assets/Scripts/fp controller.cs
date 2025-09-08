@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class FPCONTROLLER : MonoBehaviour
 {
@@ -21,6 +23,11 @@ public class FPCONTROLLER : MonoBehaviour
     public GameObject bulletprefab;
     public Transform gunpoint;
     public float bulletvelocity = 500;
+    // for the particle system
+    public GameObject fire;
+    public GameObject HitPoint;
+//new code
+
 
     [Header("Crouch")]
     public float crouchheight = 1f;
@@ -97,7 +104,7 @@ public class FPCONTROLLER : MonoBehaviour
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (context.performed)
-        { Shoot(); }
+        { Fire(); }
     }
 
     public void OnCrouch (InputAction.CallbackContext context)
@@ -180,7 +187,7 @@ public class FPCONTROLLER : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    private void Shoot()
+   /* private void Shoot()
     {
         if (bulletprefab != null && gunpoint != null)
         { GameObject bullet = Instantiate(bulletprefab, gunpoint.position, gunpoint.rotation);
@@ -191,6 +198,7 @@ public class FPCONTROLLER : MonoBehaviour
             }
         }
     }
+   */
 
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -214,8 +222,21 @@ public class FPCONTROLLER : MonoBehaviour
             }
         }
              
+     
     
-    
+    }
+
+    private  void Fire()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , 100))
+
+        { Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+
+
+            Instantiate(fire, gunpoint.position, Quaternion.identity);
+            Instantiate(HitPoint, hit.point, Quaternion.identity);
+        }
     }
 }
 
