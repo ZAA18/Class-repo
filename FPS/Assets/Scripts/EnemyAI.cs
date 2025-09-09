@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject fire;
     public GameObject HitPoint1;
     public GameObject HitPoint2;
-    public GameObject HitPoint3;
+    public GameObject HitPoint3;  
 
 
     [Header("States")]
