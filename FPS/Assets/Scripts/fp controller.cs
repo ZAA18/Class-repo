@@ -28,6 +28,7 @@ public class FPCONTROLLER : MonoBehaviour
     public GameObject HitPoint1;
     public GameObject HitPoint2;
     public GameObject HitPoint3;
+    public GameObject Bullet;
 //new code
 
 
@@ -54,7 +55,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float interactRange = 3f;
 
 
-    [SerializeField] private HEALTHSYTEM healthbar;
+    //[SerializeField] private HEALTHSYTEM healthbar;
 
 
     private CharacterController controller;
@@ -240,6 +241,8 @@ public class FPCONTROLLER : MonoBehaviour
 
             Destroy(a, 1);
 
+            Instantiate(Bullet, gunpoint.transform.position, gunpoint.transform.rotation);
+
             if (hit.transform.gameObject.CompareTag("Target"))
             { GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
                 Destroy(b, 1);
@@ -269,3 +272,4 @@ public class FPCONTROLLER : MonoBehaviour
     }
 }
 
+ 
