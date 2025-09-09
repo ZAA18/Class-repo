@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     private int currentWaypointIndex = 0;
 
     [Header("Attacking")]
-    public float TimebetweenAttacks;
+    public float TimebetweenAttacks = 1.5f;
     bool alreadyAttacked;
     public GameObject projitile;
     public Transform gunpoint;
@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
 
 
     [Header("States")]
-    private float currentHealth = 10;
+    private float currentHealth = 10f;
 
     [Header("Trying to implement bullet system")]
     public GameObject bulletPrefab;
@@ -104,7 +104,11 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
+
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
         RaycastHit hit;
+        
         if (Physics.Raycast(gunpoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
 
         {
@@ -133,11 +137,11 @@ public class EnemyAI : MonoBehaviour
                 Destroy(D, 1);
             }
 
-            EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+            FPCONTROLLER User = hit.transform.GetComponent<FPCONTROLLER>();
 
-            if (enemy != null)
+            if (User != null)
             {
-                enemy.TakeDamage(2);
+                User.TakeDamage(2);
             }
         }
     

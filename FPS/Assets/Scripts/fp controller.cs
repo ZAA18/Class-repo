@@ -39,8 +39,8 @@ public class FPCONTROLLER : MonoBehaviour
     private float originalmovespeed;
 
     [Header("Health System")]
-    [SerializeField] float maxhealth = 2000;
-    float currentHealth;
+    //[SerializeField] float maxhealth = 2000;
+    float currentHealth = 500f;
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
@@ -270,6 +270,20 @@ public class FPCONTROLLER : MonoBehaviour
             
            
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+            Invoke(nameof(DestroyPlayer), 0.5f);
+
+    }
+
+    private void DestroyPlayer()
+    {
+        Destroy(gameObject);
     }
 }
 
