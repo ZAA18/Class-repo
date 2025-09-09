@@ -266,6 +266,7 @@ public class FPCONTROLLER : MonoBehaviour
             {
                 enemy.TakeDamage(2);
             }
+           
             
            
         }
