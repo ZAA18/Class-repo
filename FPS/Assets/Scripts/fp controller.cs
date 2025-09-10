@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using JetBrains.Annotations;
 using UnityEngine.Rendering.Universal.Internal;
+using Unity.UI;
+using UnityEngine.UI;
 
 public class FPCONTROLLER : MonoBehaviour
 {
@@ -54,6 +56,11 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("Door System / interacting with a object so that it changes color")]
     public float interactRange = 3f;
 
+    [Header("GameOver PopUp")]
+   // public Text GameOver;
+    public GameObject Panel;
+    
+
 
     //[SerializeField] private HEALTHSYTEM healthbar;
 
@@ -67,6 +74,11 @@ public class FPCONTROLLER : MonoBehaviour
 
     private void Awake()
     {
+        // for the Ui Game over
+        Panel.SetActive(false);
+       // GameOver.gameObject.SetActive(true);
+        
+        
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -277,7 +289,14 @@ public class FPCONTROLLER : MonoBehaviour
         currentHealth -= damage;
 
         if (currentHealth <= 0)
-            Invoke(nameof(DestroyPlayer), 0.5f);
+        {
+            // Invoke(nameof(DestroyPlayer), 0.5f);
+            Time.timeScale = 0f;
+            Panel.SetActive(true);
+            //GameOver.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
     }
 
