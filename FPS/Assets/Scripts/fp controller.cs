@@ -51,7 +51,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwForce = 10f;
     public float throwUpwardBoost = 1f;
 
-    [Header("Door System")]
+    [Header("Door System / interacting with a object so that it changes color")]
     public float interactRange = 3f;
 
 
