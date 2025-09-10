@@ -1,4 +1,4 @@
-//using UnityEditor.ShaderGraph.Internal;
+﻿//using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     private int currentWaypointIndex = 0;
 
     [Header("Attacking")]
-    public float TimebetweenAttacks = 1.5f;
+    public float TimebetweenAttacks = 5f;
     bool alreadyAttacked;
     public GameObject projitile;
     public Transform gunpoint;
@@ -104,49 +104,54 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-
+        // Stop moving
         agent.SetDestination(transform.position);
+
+        // Rotate towards player
         transform.LookAt(player);
-        RaycastHit hit;
-        
-        if (Physics.Raycast(gunpoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
 
+        if (!alreadyAttacked)
         {
-            Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            // Attack cooldown
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), TimebetweenAttacks);
 
-
-            GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
-
-            Destroy(a, 1);
-
-            if (hit.transform.gameObject.CompareTag("Player"))
+            // 🔹 Raycast for hit detection
+            RaycastHit hit;
+            if (Physics.Raycast(gunpoint.position, transform.forward, out hit, 100))
             {
-                GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
-                Destroy(b, 1);
-            }
+                Debug.DrawRay(gunpoint.position, transform.forward * hit.distance, Color.yellow);
 
-            else if (hit.transform.gameObject.CompareTag("Wall"))
-            {
-                GameObject C = Instantiate(HitPoint2, hit.point, Quaternion.identity);
-                Destroy(C, 1);
-            }
+                // Muzzle flash
+                GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
+                Destroy(a, 1);
 
-            else if (hit.transform.gameObject.CompareTag("Floor"))
-            {
-                GameObject D = Instantiate(HitPoint3, hit.point, Quaternion.identity);
-                Destroy(D, 1);
-            }
+                // Hit effects depending on tag
+                if (hit.transform.CompareTag("Player"))
+                {
+                    GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
+                    Destroy(b, 1);
+                }
+                else if (hit.transform.CompareTag("Wall"))
+                {
+                    GameObject c = Instantiate(HitPoint2, hit.point, Quaternion.identity);
+                    Destroy(c, 1);
+                }
+                else if (hit.transform.CompareTag("Floor"))
+                {
+                    GameObject d = Instantiate(HitPoint3, hit.point, Quaternion.identity);
+                    Destroy(d, 1);
+                }
 
-            FPCONTROLLER User = hit.transform.GetComponent<FPCONTROLLER>();
-
-            if (User != null)
-            {
-                User.TakeDamage(2);
+                // Apply damage if the target has a FPCONTROLLER
+                FPCONTROLLER user = hit.transform.GetComponent<FPCONTROLLER>();
+                if (user != null)
+                {
+                    user.TakeDamage(2);
+                }
             }
         }
-    
-
-        }
+    }
 
     public void ResetAttack()
     { alreadyAttacked = false;

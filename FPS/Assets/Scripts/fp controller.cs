@@ -42,7 +42,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Health System")]
     //[SerializeField] float maxhealth = 2000;
-    float currentHealth = 500f;
+    float currentHealth = 500;
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
@@ -276,7 +276,7 @@ public class FPCONTROLLER : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.TakeDamage(2);
+                enemy.TakeDamage(1);
             }
            
             
