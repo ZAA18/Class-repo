@@ -26,6 +26,7 @@ public class FPCONTROLLER : MonoBehaviour
    // public GameObject bulletprefab;
     public Transform gunpoint;
     public float bulletvelocity = 500;
+    
     // for the particle system
     public GameObject fire;
     public GameObject HitPoint1;
@@ -313,7 +314,21 @@ public class FPCONTROLLER : MonoBehaviour
         Destroy(gameObject);
     }
 
-  
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
+        {
+            DoorInteraction door = hit.collider.GetComponent<DoorInteraction>();
+            if (door != null)
+            {
+                door.ToggleDoor();
+            }
+        }
+    }
 }
 
  

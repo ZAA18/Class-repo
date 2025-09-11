@@ -69,9 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Use",
+                    "name": "Door",
                     "type": "Button",
-                    "id": "5b7c0885-b320-4ad3-8b31-7d9e05c84c05",
+                    "id": "747b5872-7435-41d9-86cc-0fe0bf57fcc0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -356,12 +356,12 @@
                 },
                 {
                     "name": "",
-                    "id": "cbb0bef9-148c-443e-87f7-ee5dc8c10d66",
-                    "path": "<Keyboard>/f",
+                    "id": "3ca551cb-21d9-4828-b330-15b2b91a958f",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Use",
+                    "action": "Door",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
