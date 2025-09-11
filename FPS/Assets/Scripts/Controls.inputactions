@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Door",
+                    "name": "Use",
                     "type": "Button",
                     "id": "5b7c0885-b320-4ad3-8b31-7d9e05c84c05",
                     "expectedControlType": "",
@@ -361,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Door",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -49,6 +49,7 @@ public class EnemyAI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightrange, whatisPlayer);
         playerinAttackRange = Physics.CheckSphere(transform.position, attackrange, whatisPlayer);
