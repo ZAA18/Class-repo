@@ -42,9 +42,9 @@ public class FPCONTROLLER : MonoBehaviour
     public float crouchspeed = 2.5f;
     private float originalmovespeed;
 
-    [Header("Health System")]
+   // [Header("Health System")]
     //[SerializeField] float maxhealth = 2000;
-    float currentHealth = 500;
+   
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
@@ -64,8 +64,11 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Health system")]
     private PlayerHealth HealthBar;
-   
-    
+    private float maxHealth = 500f;
+    float currentHealth;
+
+
+
 
 
     //[SerializeField] private HEALTHSYTEM healthbar;
@@ -81,6 +84,7 @@ public class FPCONTROLLER : MonoBehaviour
     private void Awake()
     {
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
+        currentHealth = maxHealth;
         this.UpdateHealthBar();
         
         // for the Ui Game over
@@ -306,6 +310,7 @@ public class FPCONTROLLER : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Invoke(nameof(DestroyPlayer), 0.5f);
+            currentHealth = 0;
             Time.timeScale = 0f;
             Panel.SetActive(true);
             //GameOver.gameObject.SetActive(true);
@@ -338,7 +343,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float percentHealth = this.currentHealth;
+        float percentHealth = this.currentHealth/ this.maxHealth;
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
 }
