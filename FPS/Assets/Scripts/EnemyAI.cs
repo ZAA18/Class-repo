@@ -31,8 +31,10 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSightRange, playerinAttackRange;
 
 
-    [Header("States")]
-    private float currentHealth = 10f;
+    [Header("Health system")]
+    private PlayerHealth HealthBar;
+    private float maxHealth = 10f;
+    float currentHealth;
 
     [Header("Trying to implement bullet system")]
     public GameObject bulletPrefab;
@@ -43,6 +45,8 @@ public class EnemyAI : MonoBehaviour
 
     public void Awake()
     {
+        this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
+        currentHealth = maxHealth;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -161,17 +165,27 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    { currentHealth -= damage;
+    {
+        this.UpdateHealthBar();
+        currentHealth -= damage;
 
         if (currentHealth <= 0)
-            Invoke(nameof(DestroyEnemy), 0.5f);
-
+        {
+            currentHealth = 0;
+            Invoke(nameof(DestroyEnemy), 0f);
+        }
     }
 
     private void DestroyEnemy()
     { Destroy(gameObject);
     }
 
+
+    private void UpdateHealthBar()
+    {
+        float percentHealth = this.currentHealth / this.maxHealth;
+        this.HealthBar.UpdateHealthBarAmount(percentHealth);
+    }
 
    
 

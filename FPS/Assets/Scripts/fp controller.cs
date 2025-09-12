@@ -42,10 +42,6 @@ public class FPCONTROLLER : MonoBehaviour
     public float crouchspeed = 2.5f;
     private float originalmovespeed;
 
-   // [Header("Health System")]
-    //[SerializeField] float maxhealth = 2000;
-   
-
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
     public Transform holdPoint;
@@ -67,13 +63,7 @@ public class FPCONTROLLER : MonoBehaviour
     private float maxHealth = 500f;
     float currentHealth;
 
-
-
-
-
-    //[SerializeField] private HEALTHSYTEM healthbar;
-
-
+    [Header("Character Movement / look settings")]
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -95,8 +85,7 @@ public class FPCONTROLLER : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-       // currentHealth = maxhealth;
-       // healthbar.UpdatehealthBar( maxhealth, currentHealth);
+    
     }
 
     // update function
@@ -219,6 +208,8 @@ public class FPCONTROLLER : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
+
+    // Don't delete this code it's for future references.
    /* private void Shoot()
     {
         if (bulletprefab != null && gunpoint != null)
