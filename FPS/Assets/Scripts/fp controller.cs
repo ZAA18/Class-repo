@@ -63,6 +63,15 @@ public class FPCONTROLLER : MonoBehaviour
     private float maxHealth = 500f;
     float currentHealth;
 
+
+    [Header("Damage Screen")]
+    public Image damageScreen;
+    public float flashAlpha = 0.6f;
+    public float fadeSpeed = 2f;
+    private Color originalColor;
+
+    private bool isDamaged = false;
+
     [Header("Character Movement / look settings")]
     private CharacterController controller;
     private Vector2 moveInput;
@@ -76,6 +85,7 @@ public class FPCONTROLLER : MonoBehaviour
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
         currentHealth = maxHealth;
         this.UpdateHealthBar();
+        originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         
         // for the Ui Game over
         Panel.SetActive(false);
@@ -85,7 +95,11 @@ public class FPCONTROLLER : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    
+
+
+        // for damage Screen
+       
+
     }
 
     // update function
@@ -100,8 +114,15 @@ public class FPCONTROLLER : MonoBehaviour
             heldObject.MoveToHoldPoint(holdPoint.position);
         }
 
-        
-                
+        if (!isDamaged)
+        {
+            damageScreen.color = Color.Lerp(damageScreen.color, new Color(originalColor.r, originalColor.g, originalColor.b, 0), fadeSpeed * Time.deltaTime);
+        }
+        else
+        {
+            isDamaged = false; // Reset after showing flash
+        }
+
     }
 
 
@@ -297,6 +318,10 @@ public class FPCONTROLLER : MonoBehaviour
     {
         currentHealth -= damage;
         this.UpdateHealthBar();
+        // Show the damage flash
+        damageScreen.color = new Color(originalColor.r, originalColor.g, originalColor.b, flashAlpha);
+        isDamaged = true;
+
 
         if (currentHealth <= 0)
         {

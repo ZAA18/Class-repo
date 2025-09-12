@@ -44,6 +44,7 @@ public class EnemyAI : MonoBehaviour
 
 
 
+
     public void Awake()
     {
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
