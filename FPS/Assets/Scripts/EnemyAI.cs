@@ -18,12 +18,13 @@ public class EnemyAI : MonoBehaviour
     [Header("Attacking")]
     public float TimebetweenAttacks = 5f;
     bool alreadyAttacked;
-    public GameObject projitile;
+   public GameObject Bullet;
     public Transform gunpoint;
     public GameObject fire;
     public GameObject HitPoint1;
     public GameObject HitPoint2;
     public GameObject HitPoint3;  
+
 
 
     [Header("States")]
@@ -130,6 +131,7 @@ public class EnemyAI : MonoBehaviour
                 // Muzzle flash
                 GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
                 Destroy(a, 1);
+                Instantiate(Bullet, gunpoint.transform.position, gunpoint.transform.rotation);
 
                 // Hit effects depending on tag
                 if (hit.transform.CompareTag("Player"))
