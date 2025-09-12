@@ -62,6 +62,8 @@ public class FPCONTROLLER : MonoBehaviour
    // public Text GameOver;
     public GameObject Panel;
 
+    [Header("Health system")]
+    private PlayerHealth HealthBar;
    
     
 
@@ -78,6 +80,9 @@ public class FPCONTROLLER : MonoBehaviour
 
     private void Awake()
     {
+        this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
+        this.UpdateHealthBar();
+        
         // for the Ui Game over
         Panel.SetActive(false);
        // GameOver.gameObject.SetActive(true);
@@ -296,6 +301,7 @@ public class FPCONTROLLER : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        this.UpdateHealthBar();
 
         if (currentHealth <= 0)
         {
@@ -328,6 +334,12 @@ public class FPCONTROLLER : MonoBehaviour
                 door.ToggleDoor();
             }
         }
+    }
+
+    private void UpdateHealthBar()
+    {
+        float percentHealth = this.currentHealth;
+        this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
 }
 
