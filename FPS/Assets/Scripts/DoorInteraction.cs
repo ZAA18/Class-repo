@@ -36,4 +36,4 @@ public class DoorInteraction : MonoBehaviour
 
         transform.rotation = targetRotation;
     }
-}
+} 
