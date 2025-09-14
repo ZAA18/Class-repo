@@ -109,10 +109,10 @@ public class FPCONTROLLER : MonoBehaviour
         Handlemovement();
         HandleLook();
 
-        if (heldObject !=null)
+        /*if (heldObject !=null)
         {
             heldObject.MoveToHoldPoint(holdPoint.position);
-        }
+        }*/
 
         if (!isDamaged)
         {

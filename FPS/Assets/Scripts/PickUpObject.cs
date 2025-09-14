@@ -16,16 +16,20 @@ public class PickUpObject : MonoBehaviour
     public void PickUp( Transform holdPoint)
     {
         rb.useGravity = false;
-        rb.linearVelocity = Vector3.zero;
+        rb.isKinematic = true; // prevent the physics from fighting
+       rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.SetParent(holdPoint);
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = Vector3.zero; //Snap to hold point
+        transform.localRotation = Quaternion.identity;
+
 
     }
 
     public void Drop()
     {
         rb.useGravity = true;
+        rb.isKinematic = false;
         transform.SetParent(null);
     }
 
