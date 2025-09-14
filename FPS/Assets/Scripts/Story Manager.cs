@@ -39,18 +39,19 @@ public class StoryManager : MonoBehaviour
 
         if (currentIndex < StoryLines.Length)
         {
-            if (currentIndex < StoryPictures.Length )
+            if (currentIndex < StoryPictures.Length)
             {
                 StoryImage.sprite = StoryPictures[currentIndex];
-
-                StartCoroutine(TypeLine(StoryLines[currentIndex]));
             }
 
-            else
-            {
-                SceneManager.LoadScene("Level One");
-            }
+            StartCoroutine(TypeLine(StoryLines[currentIndex]));
         }
+
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
+        
     }
 
     IEnumerator TypeLine(string line)
