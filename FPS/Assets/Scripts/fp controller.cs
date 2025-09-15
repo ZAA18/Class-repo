@@ -349,15 +349,6 @@ public class FPCONTROLLER : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
         {
-            DoorInteraction door = hit.collider.GetComponent<DoorInteraction>();
-            WinningItem Win = hit.collider.GetComponent<WinningItem>();
-            if (door != null)
-            {
-                door.TryOpen();
-                return;
-               // door.ToggleDoor();
-            }
-
             KeyItem Key = hit.collider.GetComponent<KeyItem>();
 
             if (Key != null)
@@ -366,11 +357,24 @@ public class FPCONTROLLER : MonoBehaviour
                 return;
             }
 
+
+            WinningItem Win = hit.collider.GetComponent<WinningItem>();
             if (Win != null)
             {
                 Win.collect();
                 return;
             }
+
+            DoorInteraction door = hit.collider.GetComponent<DoorInteraction>();
+
+            if (door != null)
+            {
+                door.TryOpen();
+                return;
+               // door.ToggleDoor();
+            }
+
+           
         }
     }
 
