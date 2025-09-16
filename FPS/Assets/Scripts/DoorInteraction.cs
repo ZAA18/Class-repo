@@ -28,14 +28,15 @@ public class DoorInteraction : MonoBehaviour
       {
             if (!InventorySystem.HasKey(KeyName))
             {
-                Debug.Log("This door is locked. You need the Access Card");
+                Debug.Log("This door is locked. You need a access card");
+               
                 return;
 
             }
-
-      }
-            // Now you can open the door
             ToggleDoor();
+        }
+            // Now you can open the door
+            
 
     }
     public void ToggleDoor()
