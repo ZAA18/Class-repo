@@ -33,10 +33,10 @@ public class DoorInteraction : MonoBehaviour
                 return;
 
             }
-            ToggleDoor();
+           
         }
-            // Now you can open the door
-            
+        // Now you can open the door
+        ToggleDoor();
 
     }
     public void ToggleDoor()
