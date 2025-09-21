@@ -139,7 +139,9 @@ public class FPCONTROLLER : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && controller.isGrounded)
-        { velocity.y = Mathf.Sqrt(jumpHeight * -2f * Gravity); }
+        { 
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * Gravity); 
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -173,7 +175,7 @@ public class FPCONTROLLER : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
-                PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
+                PickUpObject pickUp = hit.collider.GetComponentInParent<PickUpObject>();
                 if (pickUp !=null)
                 {
                     pickUp.PickUp(holdPoint);
@@ -349,7 +351,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
         {
-            KeyItem Key = hit.collider.GetComponent<KeyItem>();
+            KeyItem Key = hit.collider.GetComponentInParent<KeyItem>();
 
             if (Key != null)
             {
