@@ -24,16 +24,14 @@ public class DoorInteraction : MonoBehaviour
 
     public void TryOpen()
     { 
-      if (requiresKey)
-      {
-            if (!InventorySystem.HasKey(KeyName))
-            {
-                Debug.Log("This door is locked. You need a access card");
-               
-                return;
-
-            }
-           
+        Debug.Log("DoorInteraction: TryOpen called on '" + gameObject.name + "' requiresKey=" + requiresKey);
+    
+        if (requiresKey && !InventorySystem.HasKey(KeyName))
+        {
+        
+            Debug.Log("This door is locked. You need:" + KeyName);
+            return;
+  
         }
         // Now you can open the door
         ToggleDoor();

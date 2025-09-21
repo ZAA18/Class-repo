@@ -7,7 +7,10 @@ public class KeyItem : MonoBehaviour
     public void Collect()
     {
         InventorySystem.AddKey(KeyName);
-        //Destroy(gameObject);
+
+        //Destroy the access card from the world (prevents duplicate pickups)
+        Debug.Log("KeyItem: Collected'" + KeyName + "'");
+        Destroy(gameObject);
     }
 
 }
