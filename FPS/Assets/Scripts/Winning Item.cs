@@ -11,6 +11,10 @@ public class WinningItem : MonoBehaviour
     public bool destroyOnpickup = true;
     public GameObject winPanel;
 
+    public void Awake()
+    {
+        winPanel.SetActive(false);
+    }
     public void collect()
     {
         Debug.Log("You got the money! You Win!");
@@ -23,7 +27,7 @@ public class WinningItem : MonoBehaviour
         }
 
         if (destroyOnpickup)
-        { Destroy(gameObject); }
+        { gameObject.SetActive(false); }
 
        // Time.timeScale = 0;
     }

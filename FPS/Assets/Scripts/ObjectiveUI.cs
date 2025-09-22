@@ -4,6 +4,7 @@ using UnityEngine;
 public class ObjectiveUI : MonoBehaviour
 {
     [Header("Objective Texts")]
+    public TextMeshProUGUI title;
     public TextMeshProUGUI objective1;
     public TextMeshProUGUI objective2;
     public TextMeshProUGUI objective3;
