@@ -546,9 +546,9 @@ MonoBehaviour:
     be my last heist.\nNo mistakes. No second chances.\nAfter this\u2026 I disappear."
   StoryPictures:
   - {fileID: 21300000, guid: 0d363a9a8c7b5bb4da7794d54c7645d7, type: 3}
-  - {fileID: 21300000, guid: 971e8764dd891f746b2ffd5abb51a790, type: 3}
-  - {fileID: 21300000, guid: bfddba430b171bc42980f88907fb5500, type: 3}
-  - {fileID: 21300000, guid: e797f67a5e63d684e8d3f9bffebce79b, type: 3}
+  - {fileID: 21300000, guid: 104a80080e104b4439d1ed4a8e478e0c, type: 3}
+  - {fileID: 21300000, guid: 104a80080e104b4439d1ed4a8e478e0c, type: 3}
+  - {fileID: 21300000, guid: 104a80080e104b4439d1ed4a8e478e0c, type: 3}
   typingSpeed: 0.09
 --- !u!4 &489693444
 Transform:
