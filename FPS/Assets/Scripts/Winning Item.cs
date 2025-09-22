@@ -9,14 +9,27 @@ public class WinningItem : MonoBehaviour
     public string WinSceneName = "WinScene"; // load scene
     public int pointsOnPickup = 100;
     public bool destroyOnpickup = true;
+    public GameObject winPanel;
 
     public void collect()
     {
         Debug.Log("You got the money! You Win!");
+        if (winPanel != null)
+        {
+            winPanel.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
         if (destroyOnpickup)
         { Destroy(gameObject); }
 
-        Time.timeScale = 0;
+       // Time.timeScale = 0;
+    }
+
+    public void Retry()
+    { Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);   
     }
 }
