@@ -192,17 +192,5 @@ public class EnemyAI : MonoBehaviour
 
    
 
-    /*private void DestroyBullet()
-    {
-        Destroy(projitile);
-    }
-
-    /*private void onDrwGizmosselected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackrange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightrange);
-    }
-    */
+  
 }
