@@ -60,7 +60,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Health system")]
     private PlayerHealth HealthBar;
-    private float maxHealth = 500f;
+    private float maxHealth = 300f;
     float currentHealth;
 
 
