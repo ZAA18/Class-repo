@@ -16,6 +16,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float moveSpeed = 5f;
     public float Gravity = -9.81f;
     public float jumpHeight = 1.5f;
+    
 
     [Header("Look Settings")]
     public Transform cameraTransform;
@@ -61,7 +62,7 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("Health system")]
     private PlayerHealth HealthBar;
     private float maxHealth = 300f;
-    float currentHealth;
+    public float currentHealth;
 
 
     [Header("Damage Screen")]
@@ -79,11 +80,19 @@ public class FPCONTROLLER : MonoBehaviour
     private Vector3 velocity;
     private float VerticalRotation = 0f;
 
+    [Header("UI Controll")]
+    public Canvas can;
+    public Scrollbar healthBar;
+    public TextMeshProUGUI healthText;
+
 
     private void Awake()
     {
+        //can = GetComponent<Canvas>();
+        //healthBar = GetComponent<Scrollbar>();
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
         currentHealth = maxHealth;
+        healthText.text = currentHealth.ToString();
         this.UpdateHealthBar();
         originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         
@@ -102,8 +111,19 @@ public class FPCONTROLLER : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        healthBar.value = currentHealth;
+    }
+
+    public void MattshealthBarUpdate()
+    {
+        healthBar.value = currentHealth;
+        healthText.text = currentHealth.ToString();
+    }
+
     // update function
-   private void Update()
+    private void Update()
     {
 
         Handlemovement();
@@ -186,7 +206,8 @@ public class FPCONTROLLER : MonoBehaviour
             }
         }
         else
-        { heldObject.Drop();
+        { 
+           heldObject.Drop();
           heldObject = null;
 
             
@@ -323,7 +344,7 @@ public class FPCONTROLLER : MonoBehaviour
         // Show the damage flash
         damageScreen.color = new Color(originalColor.r, originalColor.g, originalColor.b, flashAlpha);
         isDamaged = true;
-
+        MattshealthBarUpdate();
 
         if (currentHealth <= 0)
         {
