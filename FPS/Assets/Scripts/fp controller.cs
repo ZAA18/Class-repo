@@ -34,7 +34,7 @@ public class FPCONTROLLER : MonoBehaviour
     public GameObject HitPoint2;
     public GameObject HitPoint3;
     public GameObject Bullet;
-//new code
+    //new code
 
 
     [Header("Crouch")]
@@ -44,7 +44,7 @@ public class FPCONTROLLER : MonoBehaviour
     private float originalmovespeed;
 
     [Header("Pickup Settings")]
-    public float pickupRange = 3f;
+    public float pickupRange = 50f;
     public Transform holdPoint;
     private PickUpObject heldObject;
 
@@ -53,7 +53,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwUpwardBoost = 1f;
 
     [Header("Door System / interacting with a object so that it changes color")]
-    public float interactRange = 3f;
+    public float interactRange =50f;
 
     [Header("GameOver PopUp")]
    // public Text GameOver;
