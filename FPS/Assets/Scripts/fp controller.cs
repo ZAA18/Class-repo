@@ -53,7 +53,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwUpwardBoost = 1f;
 
     [Header("Door System / interacting with a object so that it changes color")]
-    public float interactRange =50f;
+    public float interactRange =25f;
 
     [Header("GameOver PopUp")]
    // public Text GameOver;
