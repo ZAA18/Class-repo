@@ -184,6 +184,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         {
             controller.height = crouchheight;
+            controller.center = new Vector3(0, crouchheight / 2f, 0); // you can adjust centre here
             moveSpeed = crouchspeed;
         }
 
@@ -234,7 +235,8 @@ public class FPCONTROLLER : MonoBehaviour
         }
         else
         { 
-           heldObject.Drop();
+
+          heldObject.Drop();
           heldObject = null;
 
             
