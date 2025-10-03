@@ -85,6 +85,11 @@ public class FPCONTROLLER : MonoBehaviour
     public Scrollbar healthBar;
     public TextMeshProUGUI healthText;
 
+    [Header("Sprint Settings")]
+    public float sprintSpeed = 50f;
+    private bool isSprinting = false;
+    public float walkspeed = 25f;
+
 
     private void Awake()
     {
@@ -232,12 +237,15 @@ public class FPCONTROLLER : MonoBehaviour
 
     public void Handlemovement()
     {
+
+        float currentSpeed = isSprinting ? sprintSpeed : walkspeed;
+        
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         if (controller.isGrounded && velocity.y < 0)
-        
             velocity.y = -2f;
+
             velocity.y += Gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
     }
@@ -401,11 +409,29 @@ public class FPCONTROLLER : MonoBehaviour
         }
     }
 
+    // Remeber to move the interaction and sprint function ( up- where they belong)
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSprinting = true;
+            Debug.Log("I'm sprinting !!!");
+        }
+        else if (context.canceled)
+        {
+            isSprinting = false;
+        }
+    }
+
+
     private void UpdateHealthBar()
     {
         float percentHealth = this.currentHealth/ this.maxHealth;
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
+
+
 }
 
  
