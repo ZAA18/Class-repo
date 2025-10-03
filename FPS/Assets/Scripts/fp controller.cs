@@ -42,6 +42,9 @@ public class FPCONTROLLER : MonoBehaviour
     public float standheight = 2f;
     public float crouchspeed = 50f;
     private float originalmovespeed;
+    public float crouchCameraHeight = 0.9f;
+    private float OriginalCameraHeight;
+    private bool isCrouching = false;
 
     [Header("Pickup Settings")]
     public float pickupRange = 50f;
@@ -115,6 +118,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         // for the speed in crouch
         originalmovespeed = moveSpeed;
+        OriginalCameraHeight = cameraTransform.localPosition.y;
 
     }
 
@@ -181,34 +185,27 @@ public class FPCONTROLLER : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
+        { 
 
-        {
-            controller.height = crouchheight;
-            controller.center = new Vector3(0, crouchheight / 2f, 0); // you can adjust centre here
-            moveSpeed = crouchspeed;
-        }
+            if (!isCrouching)
+            {
+                isCrouching = true;
+                moveSpeed = crouchspeed;
+                cameraTransform.localPosition = new Vector3(0, crouchCameraHeight, 0);
+
+            }
+        } 
 
         else if (context.canceled)
-
+      
         {
-            Vector3 checkPosition = transform.position + Vector3.up * (controller.height / 2f + 0.1f);
-            float radius = controller.radius * 0.9f;
-            /*A controller.height = standheight;
-             moveSpeed = originalmovespeed; A*/
 
-
-            if (!Physics.CheckSphere(checkPosition, radius))
-            {
-                controller.height = standheight;
-                moveSpeed = originalmovespeed;
-            }
-
-            else
-
-            {
-                Debug.Log("I can't stand up, smothing is above!");
-            }
+            isCrouching = false;
+            moveSpeed = originalmovespeed;
+            cameraTransform.localPosition = new Vector3(0, OriginalCameraHeight, 0);
         }
+
+       
     }
 
     public void OnPickUp(InputAction. CallbackContext context)
