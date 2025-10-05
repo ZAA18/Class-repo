@@ -24,12 +24,18 @@ public class FPCONTROLLER : MonoBehaviour
     public float verticalLookLimit = 90f;
 
     [Header("Shooting")]
-   // public GameObject bulletprefab;
+
     public Transform gunpoint;
     public float bulletvelocity = 500;
     public float bulletrange = 200f;
     public float NextTimeToFire = 0f;
     public float fireRate = 15f;
+
+    //ammo
+    public int maxAmmo = 10;
+    private int currentAmmo;
+    public float reloadTime = 5f;
+    private bool isReloading = false;
     
     // for the particle system
     public GameObject fire;
@@ -37,12 +43,7 @@ public class FPCONTROLLER : MonoBehaviour
     public GameObject HitPoint2;
     public GameObject HitPoint3;
     public GameObject Bullet;
-    //new code
-
-    [Header ("Weapon Selection")]
-    public int selectedWeapons = 0;
-
-
+    
     [Header("Crouch")]
     public float crouchheight = 1;
     public float standheight = 2f;
@@ -131,6 +132,9 @@ public class FPCONTROLLER : MonoBehaviour
     private void Start()
     {
         healthBar.value = currentHealth;
+      if (currentAmmo == -1)
+        currentAmmo = maxAmmo;
+
     }
 
     public void MattshealthBarUpdate()
@@ -142,6 +146,8 @@ public class FPCONTROLLER : MonoBehaviour
     // update function
     private void Update()
     {
+        if (isReloading)
+            return;
 
         Handlemovement();
         HandleLook();
@@ -160,8 +166,23 @@ public class FPCONTROLLER : MonoBehaviour
             isDamaged = false; // Reset after showing flash
         }
 
+        if (currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
     }
 
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading..");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -183,6 +204,9 @@ public class FPCONTROLLER : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
+        if (isReloading)
+            return;
+
         if (context.performed && Time.time >= NextTimeToFire)
         {
             NextTimeToFire = Time.time + 1f / fireRate;
@@ -334,6 +358,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     private  void Fire()
     {
+        currentAmmo--;
         RaycastHit hit;
         if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , bulletrange))
 
@@ -461,28 +486,6 @@ public class FPCONTROLLER : MonoBehaviour
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
 
-
-    public void onWeapon(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            selectedWeapons++;
-        }
-    }
-
-    void selectedWeapon()
-    {
-        int i = 0;
-        foreach (Transform weapon in transform)
-        {
-            if (i == selectedWeapons)
-                weapon.gameObject.SetActive(true);
-            else
-                weapon.gameObject.SetActive(false);
-            i++;
-
-        }
-    }
 }
 
 
