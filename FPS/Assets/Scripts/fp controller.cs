@@ -27,6 +27,7 @@ public class FPCONTROLLER : MonoBehaviour
    // public GameObject bulletprefab;
     public Transform gunpoint;
     public float bulletvelocity = 500;
+    public float bulletrange = 200f;
     
     // for the particle system
     public GameObject fire;
@@ -181,7 +182,7 @@ public class FPCONTROLLER : MonoBehaviour
         { Fire(); }
     }
 
-
+    // this code has a problem (the player falls after pressing control)
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -326,10 +327,10 @@ public class FPCONTROLLER : MonoBehaviour
     private  void Fire()
     {
         RaycastHit hit;
-        if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , 100))
+        if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , bulletrange))
 
         { Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-
+            Debug.Log(hit.transform.name);
 
             GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
 
