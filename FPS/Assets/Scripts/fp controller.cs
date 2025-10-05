@@ -36,6 +36,10 @@ public class FPCONTROLLER : MonoBehaviour
     private int currentAmmo;
     public float reloadTime = 5f;
     private bool isReloading = false;
+
+    //animation
+
+    public Animator animator;
     
     // for the particle system
     public GameObject fire;
@@ -137,6 +141,11 @@ public class FPCONTROLLER : MonoBehaviour
 
     }
 
+    public void OnEnable()
+    {
+        isReloading = false;
+        animator.SetBool("Reloading", false);
+    }
     public void MattshealthBarUpdate()
     {
         healthBar.value = currentHealth;
@@ -178,8 +187,12 @@ public class FPCONTROLLER : MonoBehaviour
         isReloading = true;
         Debug.Log("Reloading..");
 
+        animator.SetBool("Reloading", true);
+
         yield return new WaitForSeconds(reloadTime);
 
+        animator.SetBool("Reloading", false);
+       
         currentAmmo = maxAmmo;
         isReloading = false;
     }
