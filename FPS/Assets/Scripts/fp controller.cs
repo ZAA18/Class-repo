@@ -28,6 +28,8 @@ public class FPCONTROLLER : MonoBehaviour
     public Transform gunpoint;
     public float bulletvelocity = 500;
     public float bulletrange = 200f;
+    public float NextTimeToFire = 0f;
+    public float fireRate = 15f;
     
     // for the particle system
     public GameObject fire;
@@ -36,6 +38,9 @@ public class FPCONTROLLER : MonoBehaviour
     public GameObject HitPoint3;
     public GameObject Bullet;
     //new code
+
+    [Header ("Weapon Selection")]
+    public int selectedWeapons = 0;
 
 
     [Header("Crouch")]
@@ -178,8 +183,11 @@ public class FPCONTROLLER : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        { Fire(); }
+        if (context.performed && Time.time >= NextTimeToFire)
+        {
+            NextTimeToFire = Time.time + 1f / fireRate;
+            Fire(); 
+        }
     }
 
     // this code has a problem (the player falls after pressing control)
@@ -334,25 +342,25 @@ public class FPCONTROLLER : MonoBehaviour
 
             GameObject a = Instantiate(fire, gunpoint.position, Quaternion.identity);
 
-            Destroy(a, 1);
+            Destroy(a, 0.5f);
 
             Instantiate(Bullet, gunpoint.transform.position, gunpoint.transform.rotation);
 
             if (hit.transform.gameObject.CompareTag("Target"))
             { GameObject b = Instantiate(HitPoint1, hit.point, Quaternion.identity);
-                Destroy(b, 1);
+                Destroy(b, 0.5f);
             }
 
             else if (hit.transform.gameObject.CompareTag("Wall"))
             {
                 GameObject C = Instantiate(HitPoint2, hit.point, Quaternion.identity);
-                Destroy(C, 1);
+                Destroy(C, 0.5f);
             }
 
             else if (hit.transform.gameObject.CompareTag("Floor"))
             {
                 GameObject D = Instantiate(HitPoint3, hit.point, Quaternion.identity);
-                Destroy(D, 1);
+                Destroy(D, 0.5f);
             }
             
             EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
@@ -454,6 +462,30 @@ public class FPCONTROLLER : MonoBehaviour
     }
 
 
+    public void onWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            selectedWeapons++;
+        }
+    }
+
+    void selectedWeapon()
+    {
+        int i = 0;
+        foreach (Transform weapon in transform)
+        {
+            if (i == selectedWeapons)
+                weapon.gameObject.SetActive(true);
+            else
+                weapon.gameObject.SetActive(false);
+            i++;
+
+        }
+    }
 }
+
+
+
 
  
