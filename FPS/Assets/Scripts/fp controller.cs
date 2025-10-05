@@ -34,7 +34,7 @@ public class FPCONTROLLER : MonoBehaviour
     //ammo
     public int maxAmmo = 10;
     private int currentAmmo;
-    public float reloadTime = 5f;
+    public float reloadTime = 0f;
     private bool isReloading = false;
 
     //animation
@@ -155,8 +155,8 @@ public class FPCONTROLLER : MonoBehaviour
     // update function
     private void Update()
     {
-        if (isReloading)
-            return;
+        /*if (isReloading)
+            return*/
 
         Handlemovement();
         HandleLook();
@@ -235,6 +235,7 @@ public class FPCONTROLLER : MonoBehaviour
 
             if (!isCrouching)
             {
+
                 isCrouching = true;
                 moveSpeed = crouchspeed;
                 cameraTransform.localPosition = new Vector3(0, crouchCameraHeight, 0);
