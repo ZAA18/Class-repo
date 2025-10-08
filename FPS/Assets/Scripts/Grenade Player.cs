@@ -1,4 +1,5 @@
 using System.Threading;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class GrenadePlayer : MonoBehaviour
@@ -6,14 +7,16 @@ public class GrenadePlayer : MonoBehaviour
     public float delay = 3f;
     float countdown;
     bool hasExploded = false;
-
+    public float radius = 5f;
+    public float force = 700f;
     //particle sytem
-
     public GameObject explosionEffect;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         countdown = delay;
+
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class GrenadePlayer : MonoBehaviour
     {
 
         countdown -= Time.deltaTime;
-        if (countdown <= 0f && !hasExploded) 
+        if (countdown <= 0f && !hasExploded)
         {
             Explode();
             hasExploded = true;
@@ -29,17 +32,44 @@ public class GrenadePlayer : MonoBehaviour
 
     }
 
-    public void Explode ()
+    public void Explode()
     {
         Debug.Log("Boom");
 
         Instantiate(explosionEffect, transform.position, transform.rotation);
+
         //Show effect 
 
         //Get nerby objects 
-        // add force
-        // Damage
 
-        // Remove grenade
+        Collider[] collidersToDestroy = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (Collider nearbyObject in collidersToDestroy)
+        {
+            //adding force
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            { rb.AddExplosionForce(force, transform.position, radius); }
+
+
+            Destructible dest = nearbyObject.GetComponent<Destructible>();
+            if (dest != null)
+            {
+                dest.Destroy();
+            }
+        }
+
+        Collider[] collidersToMove = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (Collider nearbyObject in collidersToMove)
+        {
+
+            // add force
+
+            // Damage
+
+            // Remove grenade
+        }
     }
 }
