@@ -1,16 +1,16 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class Destructible : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject destroyedVersion;
 
-    // Update is called once per frame
-    void Update()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void Destroy()
     {
-        
+        Instantiate(destroyedVersion, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
