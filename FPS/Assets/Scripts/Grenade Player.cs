@@ -64,6 +64,10 @@ public class GrenadePlayer : MonoBehaviour
 
         foreach (Collider nearbyObject in collidersToMove)
         {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            { rb.AddExplosionForce(force, transform.position, radius); }
 
             // add force
 

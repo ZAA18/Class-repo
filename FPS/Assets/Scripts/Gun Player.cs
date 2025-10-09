@@ -20,6 +20,7 @@ public class GunPlayer : MonoBehaviour
     private int currentAmmo;
     public float reloadTime = 5f;
     private bool isReloading = false;
+    private bool isShooting = false;
 
     //animation
 
@@ -43,7 +44,9 @@ public class GunPlayer : MonoBehaviour
     public void OnEnable()
     {
         isReloading = false;
+        isShooting = false;
         animator.SetBool("Reloading", false);
+        animator.SetBool("Shooting", false);
     }
 
     // Update is called once per frame
@@ -75,15 +78,33 @@ public class GunPlayer : MonoBehaviour
         isReloading = false;
     }
 
+    IEnumerator Attacking ()
+    {
+        isShooting = true;
+        Debug.Log("Attacking");
+        animator.SetBool("Shooting", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Shooting", false);
+        isShooting = false;
+    }
+
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (isReloading)
             return;
 
+        if (isShooting)
+            return;
+        {
+            
+        }
+
         if (context.performed && Time.time >= NextTimeToFire)
         {
             NextTimeToFire = Time.time + 1f / fireRate;
             Fire();
+            StartCoroutine(Attacking());
+            return;
         }
     }
 
