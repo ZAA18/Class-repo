@@ -10,7 +10,7 @@ public class GrenadePlayer : MonoBehaviour
     public float radius = 5f;
     public float force = 700f;
     //particle sytem
-    public ParticleSystem explosionEffect;
+    public GameObject explosionEffect;
    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,14 +21,14 @@ public class GrenadePlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PlayOnAwake()
+    public void start()
     {
 
         countdown -= Time.deltaTime;
         if (countdown <= 0f && !hasExploded)
         {
             Explode();
-            explosionEffect.Play();
+            //explosionEffect.Play();
             hasExploded = true;
         }
 
