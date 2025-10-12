@@ -61,4 +61,18 @@ public class PickUpObject : MonoBehaviour
         else
             transform.position = targetPosition;
     }*/
+
+    public void Throw(Vector3 force)
+    {
+        // detach from the player first
+        if (rb == null) return;
+        transform.SetParent(null);
+
+        //re-enable physics
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
+        rb.AddForce(force, ForceMode.Impulse);
+
+    }
 }

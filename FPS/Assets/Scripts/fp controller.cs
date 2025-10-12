@@ -64,7 +64,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Throw Settings")]
     public float throwForce = 10f;
-    public float throwUpwardBoost = 1f;
+    public float throwUpwardBoost = 2f;
 
     [Header("Door System / interacting with a object so that it changes color")]
     public float interactRange =25f;
@@ -296,7 +296,7 @@ public class FPCONTROLLER : MonoBehaviour
         Vector3 dir = cameraTransform.forward;
         Vector3 impulse = dir * throwForce + Vector3.up * throwUpwardBoost;
 
-       // heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
+       heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
         heldObject = null;
 
     }
