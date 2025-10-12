@@ -26,7 +26,7 @@ public class PickUpObject : MonoBehaviour
         }
 
 
-        transform.SetParent(holdPoint);
+        transform.SetParent(holdPoint, worldPositionStays: true);
         transform.localPosition = Vector3.zero; //Snap to hold point
         transform.localRotation = Quaternion.identity;
 
@@ -43,7 +43,7 @@ public class PickUpObject : MonoBehaviour
             rb.isKinematic = false;
         }
 
-        transform.SetParent(null);
+        transform.SetParent(null, true);
         transform.localScale = Vector3.one;
     }
 
