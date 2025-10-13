@@ -39,7 +39,9 @@ public class FPCONTROLLER : MonoBehaviour
 
     //animation
 
-    public Animator animator;
+    public Animator animator; // this one is for the weapons
+    public Animator fpsAnimator;
+
     
     // for the particle system
     public GameObject fire;
@@ -189,6 +191,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         animator.SetBool("Reloading", true);
 
+
         yield return new WaitForSeconds(reloadTime);
 
         animator.SetBool("Reloading", false);
@@ -211,7 +214,8 @@ public class FPCONTROLLER : MonoBehaviour
     {
         if (context.performed && controller.isGrounded)
         { 
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * Gravity); 
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * Gravity);
+            fpsAnimator.SetBool("IsJumping", true);
         }
     }
 
@@ -310,6 +314,13 @@ public class FPCONTROLLER : MonoBehaviour
         
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * currentSpeed * Time.deltaTime);
+
+        //Setting speed for parameter
+        float animationSpeed = new Vector2(moveInput.x, moveInput.y).magnitude;
+        fpsAnimator.SetFloat("Speed", animationSpeed);
+
+        if (controller.isGrounded)
+        { fpsAnimator.SetBool("isJumping", false); }
 
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
