@@ -320,7 +320,7 @@ public class FPCONTROLLER : MonoBehaviour
         fpsAnimator.SetFloat("Speed", animationSpeed);
 
         if (controller.isGrounded)
-        { fpsAnimator.SetBool("isJumping", false); }
+        { fpsAnimator.SetBool("IsJumping", true); }
 
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
