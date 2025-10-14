@@ -213,10 +213,12 @@ public class FPCONTROLLER : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && controller.isGrounded)
-        { 
+        {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * Gravity);
             fpsAnimator.SetBool("IsJumping", true);
         }
+        else
+            fpsAnimator.SetBool("IsJumping", false);
     }
 
     public void OnShoot(InputAction.CallbackContext context)
