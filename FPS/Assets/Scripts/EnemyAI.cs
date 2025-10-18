@@ -63,17 +63,18 @@ public class EnemyAI : MonoBehaviour
 
     public void Awake()
     {
+        agent.isStopped = false;
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
         currentHealth = maxHealth;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
         if (player == null)
-        {
-            var p = GameObject.Find("Player");
 
-            if (p != null) player = p.transform;
-        }
+            player = GameObject.Find("Player")?.transform; 
+
+            
+        
 
         if (agent == null) 
             agent = GetComponent<NavMeshAgent>();
@@ -85,6 +86,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
 
     {
+        if (isDead) return;
        
         //Its for updating animator parameters every frame
         UpdateAnimatorParameters();
@@ -124,8 +126,8 @@ public class EnemyAI : MonoBehaviour
     // the function below patrol supports patrol
     private void Patroling()
     {
-        if (isSitting) return;
-        if (waypoints.Length == 0) return;
+        if (isSitting || waypoints.Length == 0) return;
+        
 
         agent.SetDestination(waypoints[currentWaypointIndex].position);
 
@@ -137,6 +139,7 @@ public class EnemyAI : MonoBehaviour
             if (Random.value < sitChancePerPatrol)
             {
                 TrySitNearChair();
+                return;
             }
 
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
