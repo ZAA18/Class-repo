@@ -57,6 +57,7 @@ public class EnemyAI : MonoBehaviour
     public float chairSearchRadius = 8f;
     public bool isSitting = false;
 
+    private bool isDead = false;
 
 
 
@@ -66,12 +67,25 @@ public class EnemyAI : MonoBehaviour
         currentHealth = maxHealth;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        if (player == null)
+        {
+            var p = GameObject.Find("Player");
+
+            if (p != null) player = p.transform;
+        }
+
+        if (agent == null) 
+            agent = GetComponent<NavMeshAgent>();
+        if (enemyAnimator == null)
+            enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
 
     {
+       
         //Its for updating animator parameters every frame
         UpdateAnimatorParameters();
 
@@ -89,7 +103,7 @@ public class EnemyAI : MonoBehaviour
 
     private void UpdateAnimatorParameters()
     {
-        if (enemyAnimator == null) return;
+        if (enemyAnimator == null || agent ==null) return;
 
         float speed = agent.velocity.magnitude;
         enemyAnimator.SetFloat("Speed", speed);
@@ -101,6 +115,10 @@ public class EnemyAI : MonoBehaviour
         enemyAnimator.SetBool("isSitting", isSitting);
 
         enemyAnimator.SetBool("HasGun", playerInSightRange);
+
+        //Running when chase (player see but not in attackRange)
+        bool isRunning = playerInSightRange && !playerinAttackRange;
+        enemyAnimator.SetBool("IsRunning", isRunning);
     }
 
     // the function below patrol supports patrol
@@ -130,7 +148,11 @@ public class EnemyAI : MonoBehaviour
 
 
     private void ChasePlayer()
-    { agent.SetDestination(player.position); }
+    {
+        isSitting = false;
+        agent.isStopped = false;
+        if (player != null)
+        agent.SetDestination(player.position); }
 
     /* private void AttackPlayer()
      { 
@@ -229,14 +251,45 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead)
+            return;
+        {
+            
+        }
         this.UpdateHealthBar();
         currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
+            Die();
             currentHealth = 0;
             Invoke(nameof(DestroyEnemy), 0f);
         }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        agent.isStopped = true;
+
+        // trigger death animation 
+        if (enemyAnimator != null)
+
+        {
+            enemyAnimator.SetBool("Die", true);
+            enemyAnimator.SetBool("IsFalling", false);
+            enemyAnimator.SetFloat("Speed", 0f);
+
+
+        }
+
+        // disable colliders so physics doesnt interfere (optional)
+        var col = GetComponent<Collider>();
+
+        if (col != null) col.enabled = false;
+
+        //Destroy After a delay to allow animation to play
+        Destroy(gameObject, 3f);
     }
 
     private void DestroyEnemy()
@@ -246,7 +299,9 @@ public class EnemyAI : MonoBehaviour
 
 
     private void UpdateHealthBar()
-    {
+    { if (HealthBar == null)
+            return;
+
         float percentHealth = this.currentHealth / this.maxHealth;
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
@@ -303,4 +358,27 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
             
             }
+
+   /* private IEnumerator GoToChairAndSit (Transform chair)
+    {
+        isSitting = false;
+        agent.isStopped = false;
+        agent.SetDestination(chair.position);
+
+        while (agent.pathPending || agent.remainingDistance > 0.6f)
+            yield return null;
+
+        isSitting = true;
+        agent.isStopped = true;
+
+        if (enemyAnimator != null) enemyAnimator.SetBool("isSitting", true);
+                float t = Random.Range(sitDurationMin, sitDurationMax);
+        yield return new WaitForSeconds(t); ;
+
+        isSitting = false;
+
+        if (enemyAnimator != null)
+            enemyAnimator.SetBool("IsSitting", false);
+        agent.isStopped = false;
+    }*/
 }
