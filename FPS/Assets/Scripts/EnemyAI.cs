@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Core")]
     public NavMeshAgent agent;
-    public Transform player;
+    public GameObject player;
     public LayerMask WhatisGround, whatisPlayer;
 
 
@@ -63,15 +63,16 @@ public class EnemyAI : MonoBehaviour
 
     public void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         agent.isStopped = false;
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
         currentHealth = maxHealth;
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-
+        agent.isStopped = false;
         if (player == null)
 
-            player = GameObject.Find("Player")?.transform; 
+            //player = GameObject.Find("Player")?.transform; 
 
             
         
@@ -102,6 +103,8 @@ public class EnemyAI : MonoBehaviour
             AttackPlayer();
         Debug.Log("Attacking Player");
     }
+
+    //Testing if movement works
 
     private void UpdateAnimatorParameters()
     {
@@ -155,7 +158,7 @@ public class EnemyAI : MonoBehaviour
         isSitting = false;
         agent.isStopped = false;
         if (player != null)
-        agent.SetDestination(player.position); }
+        agent.SetDestination(player.transform.position); }
 
     /* private void AttackPlayer()
      { 
@@ -182,11 +185,11 @@ public class EnemyAI : MonoBehaviour
         // Stop moving
         agent.isStopped = true;
         agent.SetDestination(transform.position);
-
+        player = GameObject.FindGameObjectWithTag("Player");
         // Rotate towards player
-        Vector3 lookPos = player.position;
-        lookPos.y = transform.position.y;
-        transform.LookAt(player);
+        //Vector3 lookPos = player.transform.position;
+        //lookPos.y = transform.position.y;
+        transform.LookAt(player.transform.position);
 
         // Play get gun stance if needed
 
