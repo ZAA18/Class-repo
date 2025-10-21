@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Core")]
     public NavMeshAgent agent;
-    public Transform player;
+    public GameObject player;
     public LayerMask WhatisGround, whatisPlayer;
 
 
@@ -57,21 +57,38 @@ public class EnemyAI : MonoBehaviour
     public float chairSearchRadius = 8f;
     public bool isSitting = false;
 
+    private bool isDead = false;
 
 
 
     public void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
         currentHealth = maxHealth;
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
+        if (player == null)
+
+            //player = GameObject.Find("Player")?.transform; 
+
+            
+        
+
+        if (agent == null) 
+            agent = GetComponent<NavMeshAgent>();
+        if (enemyAnimator == null)
+            enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
 
     {
+        if (isDead) return;
+       
         //Its for updating animator parameters every frame
         UpdateAnimatorParameters();
 
@@ -87,9 +104,11 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Attacking Player");
     }
 
+    //Testing if movement works
+
     private void UpdateAnimatorParameters()
     {
-        if (enemyAnimator == null) return;
+        if (enemyAnimator == null || agent ==null) return;
 
         float speed = agent.velocity.magnitude;
         enemyAnimator.SetFloat("Speed", speed);
@@ -101,13 +120,17 @@ public class EnemyAI : MonoBehaviour
         enemyAnimator.SetBool("isSitting", isSitting);
 
         enemyAnimator.SetBool("HasGun", playerInSightRange);
+
+        //Running when chase (player see but not in attackRange)
+        bool isRunning = playerInSightRange && !playerinAttackRange;
+        enemyAnimator.SetBool("IsRunning", isRunning);
     }
 
     // the function below patrol supports patrol
     private void Patroling()
     {
-        if (isSitting) return;
-        if (waypoints.Length == 0) return;
+        if (isSitting || waypoints.Length == 0) return;
+        
 
         agent.SetDestination(waypoints[currentWaypointIndex].position);
 
@@ -119,6 +142,7 @@ public class EnemyAI : MonoBehaviour
             if (Random.value < sitChancePerPatrol)
             {
                 TrySitNearChair();
+                return;
             }
 
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
@@ -130,7 +154,11 @@ public class EnemyAI : MonoBehaviour
 
 
     private void ChasePlayer()
-    { agent.SetDestination(player.position); }
+    {
+        isSitting = false;
+        agent.isStopped = false;
+        if (player != null)
+        agent.SetDestination(player.transform.position); }
 
     /* private void AttackPlayer()
      { 
@@ -157,11 +185,11 @@ public class EnemyAI : MonoBehaviour
         // Stop moving
         agent.isStopped = true;
         agent.SetDestination(transform.position);
-
+        player = GameObject.FindGameObjectWithTag("Player");
         // Rotate towards player
-        Vector3 lookPos = player.position;
-        lookPos.y = transform.position.y;
-        transform.LookAt(player);
+        //Vector3 lookPos = player.transform.position;
+        //lookPos.y = transform.position.y;
+        transform.LookAt(player.transform.position);
 
         // Play get gun stance if needed
 
@@ -229,14 +257,45 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead)
+            return;
+        {
+            
+        }
         this.UpdateHealthBar();
         currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
+            Die();
             currentHealth = 0;
             Invoke(nameof(DestroyEnemy), 0f);
         }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        agent.isStopped = true;
+
+        // trigger death animation 
+        if (enemyAnimator != null)
+
+        {
+            enemyAnimator.SetBool("Die", true);
+            enemyAnimator.SetBool("IsFalling", false);
+            enemyAnimator.SetFloat("Speed", 0f);
+
+
+        }
+
+        // disable colliders so physics doesnt interfere (optional)
+        var col = GetComponent<Collider>();
+
+        if (col != null) col.enabled = false;
+
+        //Destroy After a delay to allow animation to play
+        Destroy(gameObject, 3f);
     }
 
     private void DestroyEnemy()
@@ -246,7 +305,9 @@ public class EnemyAI : MonoBehaviour
 
 
     private void UpdateHealthBar()
-    {
+    { if (HealthBar == null)
+            return;
+
         float percentHealth = this.currentHealth / this.maxHealth;
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
@@ -303,4 +364,27 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
             
             }
+
+   /* private IEnumerator GoToChairAndSit (Transform chair)
+    {
+        isSitting = false;
+        agent.isStopped = false;
+        agent.SetDestination(chair.position);
+
+        while (agent.pathPending || agent.remainingDistance > 0.6f)
+            yield return null;
+
+        isSitting = true;
+        agent.isStopped = true;
+
+        if (enemyAnimator != null) enemyAnimator.SetBool("isSitting", true);
+                float t = Random.Range(sitDurationMin, sitDurationMax);
+        yield return new WaitForSeconds(t); ;
+
+        isSitting = false;
+
+        if (enemyAnimator != null)
+            enemyAnimator.SetBool("IsSitting", false);
+        agent.isStopped = false;
+    }*/
 }
