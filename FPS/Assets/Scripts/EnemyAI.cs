@@ -64,9 +64,15 @@ public class EnemyAI : MonoBehaviour
     public AudioClip alertSound;
     private AudioSource audioSource;
 
+    //sOUND EFFECTS
+    public AudioClip ShootSound;
+    public AudioClip deathSound;
+    public AudioClip hurtSound;
+    public AudioClip footStepSound;
+
     public void Awake()
     {
-       
+        audioSource = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = false;
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
@@ -175,6 +181,11 @@ public class EnemyAI : MonoBehaviour
     // the function below patrol supports patrol
     private void Patroling()
     {
+        if (audioSource != null && footStepSound != null && !audioSource.isPlaying)
+            audioSource.PlayOneShot(footStepSound);
+        {
+            
+        }
         if (isSitting || waypoints.Length == 0) return;
         
 
@@ -247,6 +258,9 @@ public class EnemyAI : MonoBehaviour
             enemyAnimator.SetBool("HasGun", true);
         }
 
+        if (audioSource != null && ShootSound != null)
+            audioSource.PlayOneShot(ShootSound);
+
         if (!alreadyAttacked)
         {
             // Attack cooldown
@@ -308,9 +322,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (isDead)
             return;
-        {
-            
-        }
+        if (audioSource != null && hurtSound != null)
+            audioSource.PlayOneShot(hurtSound);
         this.UpdateHealthBar();
         currentHealth -= damage;
 
@@ -318,14 +331,18 @@ public class EnemyAI : MonoBehaviour
         {
             Die();
             currentHealth = 0;
-            Invoke(nameof(DestroyEnemy), 0f);
+           
         }
+
+        
     }
 
     private void Die()
     {
         if (isDead) return;
 
+        if (audioSource != null && deathSound != null)
+            audioSource.PlayOneShot(deathSound);
         isDead = true;
         agent.isStopped = true;
 
