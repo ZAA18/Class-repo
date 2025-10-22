@@ -7,6 +7,10 @@ public class Animateddoors : MonoBehaviour
 {
     [Header("DoorAnimation")]
     public Animator doorAnimator;
+    public string openTrigger = "Open";
+    public string closeTrigger = "Close";
+    public string openBool = "isOpen";
+    public float animationDuration = 1.2f;
 
     //for the access card
     public bool requiresKey = false;
@@ -17,6 +21,12 @@ public class Animateddoors : MonoBehaviour
 
     private bool isAnimating = false;
 
+    [Header("Audio Settings (Optional)")]
+    public AudioSource doorAudio;
+    public AudioClip openSound;
+    public AudioClip lockedSound;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
     {
@@ -24,7 +34,8 @@ public class Animateddoors : MonoBehaviour
         if (doorAnimator == null)
             doorAnimator = GetComponentInChildren<Animator>();
 
-    
+        if (doorAudio == null)
+            doorAudio = GetComponent<AudioSource>();
     }
 
     public void TryOpen()
@@ -46,31 +57,58 @@ public class Animateddoors : MonoBehaviour
 
     }
 
-      private void ToggleDoor()
-        {
-            isOpen = !isOpen;
-            StartCoroutine(AnimateDoor());
-        }
+    private void ToggleDoor()
+    {
+        isOpen = !isOpen;
+        StartCoroutine(AnimateDoor());
+    }
 
-        private IEnumerator AnimateDoor()
-        {
-            isAnimating = true;
+    private IEnumerator AnimateDoor()
+    {
+        isAnimating = true;
 
-            if (doorAnimator != null)
+        if (doorAnimator != null)
+        {
+            if (doorAnimator.HasParameterOfType(openTrigger, AnimatorControllerParameterType.Trigger))
             {
-                doorAnimator.SetBool("isOpen", isOpen);
+                doorAnimator.SetTrigger(isOpen ? openTrigger : closeTrigger);
             }
 
-            else
+            else if (doorAnimator.HasParameterOfType(openBool, AnimatorControllerParameterType.Bool))
             {
-                Debug.LogWarning($"Animateddoors'{gameObject.name}' has no Animator assigned!");
+                doorAnimator.SetBool(openBool, isOpen);
 
             }
-            yield return new WaitForSeconds(1f);
 
-            isAnimating = false;
         }
+        else
+
+        {
+            Debug.LogWarning($"AnimatedDoor '{gameObject.name}'has no Animator assigned!");
+
+        }
+        yield return new WaitForSeconds(1f);
+
+        isAnimating = false;
+    }
+
+
+    private void playOpenSound()
+    {
+        if (doorAudio != null && openSound != null)
+            doorAudio.PlayOneShot(openSound);
+    }
+
+    private void PlayLockedSound()
+    {
+        if (doorAudio != null && lockedSound != null)
+            doorAudio.PlayOneShot(lockedSound);
+    }
 }
+
+       
+
+          
 
     
         
