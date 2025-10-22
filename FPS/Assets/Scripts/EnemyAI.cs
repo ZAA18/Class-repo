@@ -59,10 +59,14 @@ public class EnemyAI : MonoBehaviour
 
     private bool isDead = false;
 
-
+    [Header("Backup / communication")]
+    public float alertRange = 15f;
+    public AudioClip alertSound;
+    private AudioSource audioSource;
 
     public void Awake()
     {
+       
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = false;
         this.HealthBar = this.GetComponentInChildren<PlayerHealth>();
@@ -74,14 +78,49 @@ public class EnemyAI : MonoBehaviour
 
             //player = GameObject.Find("Player")?.transform; 
 
-            
+            //For the sound
+           
         
 
         if (agent == null) 
             agent = GetComponent<NavMeshAgent>();
         if (enemyAnimator == null)
             enemyAnimator = GetComponent<Animator>();
+
+        //For the sound
+
+        audioSource = GetComponent<AudioSource>();
     }
+
+    //Yell to enemies nearby
+
+    public void AlertNearbyEnemies()
+    {
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, alertRange);
+
+        foreach (Collider col in nearbyEnemies)
+        {
+            EnemyAI ally = col.GetComponent<EnemyAI>();
+
+            if ( ally != null  && ally != this   && !ally.playerInSightRange)
+            {
+                ally.OnAlerted(player.transform.position);
+            }
+        }
+
+        if (audioSource != null && alertSound != null)
+        {
+            audioSource.PlayOneShot(alertSound);
+        }
+    }
+
+    public void OnAlerted(Vector3 alertPosition)
+    {
+        playerInSightRange = true;
+        agent.SetDestination(alertPosition);
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -96,13 +135,20 @@ public class EnemyAI : MonoBehaviour
         playerinAttackRange = Physics.CheckSphere(transform.position, attackrange, whatisPlayer);
 
         if (!playerInSightRange && !playerinAttackRange)
-            Patroling();
+        { Patroling(); }
         else if (playerInSightRange && !playerinAttackRange)
+        {
+            AlertNearbyEnemies();
             ChasePlayer();
+        }
         else if (playerinAttackRange && playerInSightRange)
+        {
             AttackPlayer();
-        Debug.Log("Attacking Player");
+            Debug.Log("Attacking Player");
+        }
+    
     }
+
 
     //Testing if movement works
 
@@ -182,6 +228,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
+
         // Stop moving
         agent.isStopped = true;
         agent.SetDestination(transform.position);
@@ -192,6 +239,8 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(player.transform.position);
 
         // Play get gun stance if needed
+        //calling alert function
+        AlertNearbyEnemies();
 
         if (enemyAnimator != null)
         {
@@ -212,7 +261,7 @@ public class EnemyAI : MonoBehaviour
             }
             // 🔹 Raycast for hit detection
             RaycastHit hit;
-            if (Physics.Raycast(gunpoint.position, transform.forward, out hit, 100))
+            if (Physics.Raycast(gunpoint.position, gunpoint.forward, out hit, 100))
             {
                 Debug.DrawRay(gunpoint.position, transform.forward * hit.distance, Color.yellow);
 
@@ -275,6 +324,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+
         isDead = true;
         agent.isStopped = true;
 
@@ -290,12 +341,15 @@ public class EnemyAI : MonoBehaviour
         }
 
         // disable colliders so physics doesnt interfere (optional)
-        var col = GetComponent<Collider>();
+        Collider col = GetComponent<Collider>();
 
         if (col != null) col.enabled = false;
 
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
+        rb.mass = 2f;
         //Destroy After a delay to allow animation to play
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 10f);
     }
 
     private void DestroyEnemy()
