@@ -490,7 +490,12 @@ public class FPCONTROLLER : MonoBehaviour
                // door.ToggleDoor();
             }
 
+            Animateddoors animatedDoor = hit.collider.GetComponentInParent<Animateddoors>();
            
+            if (animatedDoor != null)
+            { animatedDoor.TryOpen();
+                return;
+            }
         }
     }
 
