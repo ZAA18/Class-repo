@@ -545,10 +545,7 @@ MonoBehaviour:
   - "And so here I am again\u2026\nmask on, gun in hand, heart racing.\n\nThis will
     be my last heist.\nNo mistakes. No second chances.\nAfter this\u2026 I disappear."
   StoryPictures:
-  - {fileID: 21300000, guid: bf23217296dd1674f85649aaed4110ae, type: 3}
-  - {fileID: 21300000, guid: fddf342fe14739d4ab9c2da4361260a5, type: 3}
-  - {fileID: 21300000, guid: a2827616700d89f498c8ab3bf518d832, type: 3}
-  - {fileID: 21300000, guid: 615834fe09fab07479cd6d48bb19961a, type: 3}
+  - {fileID: 0}
   typingSpeed: 0.09
 --- !u!4 &489693444
 Transform:
