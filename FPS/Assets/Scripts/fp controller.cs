@@ -106,6 +106,8 @@ public class FPCONTROLLER : MonoBehaviour
     private bool isSprinting = false;
     public float walkspeed = 25f;
 
+    [Header("New Gun settings")]
+    public ParticleSystem MuzzleFlash;
 
     private void Awake()
     {
@@ -388,7 +390,9 @@ public class FPCONTROLLER : MonoBehaviour
 
     private  void Fire()
     {
+
         currentAmmo--;
+        MuzzleFlash.Play();
         RaycastHit hit;
         if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , bulletrange))
 
