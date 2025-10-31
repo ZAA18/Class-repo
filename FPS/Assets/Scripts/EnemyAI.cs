@@ -352,7 +352,7 @@ public class EnemyAI : MonoBehaviour
         {
             enemyAnimator.SetBool("Die", true);
             enemyAnimator.SetBool("IsFalling", false);
-            enemyAnimator.SetFloat("Speed", 0f);
+            enemyAnimator.SetFloat("Speed", 1f);
 
 
         }
@@ -366,7 +366,7 @@ public class EnemyAI : MonoBehaviour
         if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
         rb.mass = 2f;
         //Destroy After a delay to allow animation to play
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 1f);
     }
 
     private void DestroyEnemy()
