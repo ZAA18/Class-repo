@@ -16,7 +16,7 @@ public class FPCONTROLLER : MonoBehaviour
     public float moveSpeed = 5f;
     public float Gravity = -9.81f;
     public float jumpHeight = 1.5f;
-    
+
 
     [Header("Look Settings")]
     public Transform cameraTransform;
@@ -42,14 +42,14 @@ public class FPCONTROLLER : MonoBehaviour
     public Animator animator; // this one is for the weapons
     public Animator fpsAnimator;
 
-    
+
     // for the particle system
     public GameObject fire;
     public GameObject HitPoint1;
     public GameObject HitPoint2;
     public GameObject HitPoint3;
     public GameObject Bullet;
-    
+
     [Header("Crouch")]
     public float crouchheight = 1;
     public float standheight = 2f;
@@ -69,16 +69,17 @@ public class FPCONTROLLER : MonoBehaviour
     public float throwUpwardBoost = 2f;
 
     [Header("Door System / interacting with a object so that it changes color")]
-    public float interactRange =25f;
+    public float interactRange = 25f;
 
     [Header("GameOver PopUp")]
-   // public Text GameOver;
+    // public Text GameOver;
     public GameObject Panel;
 
     [Header("Health system")]
     private PlayerHealth HealthBar;
     private float maxHealth = 300f;
     public float currentHealth;
+    public float MaxHealth => maxHealth;
 
 
     [Header("Damage Screen")]
@@ -109,6 +110,18 @@ public class FPCONTROLLER : MonoBehaviour
     [Header("New Gun settings")]
     public ParticleSystem MuzzleFlash;
 
+    [System.Serializable]
+
+    public struct StoredHealable
+
+    {
+        public HealablePickup.HealMode mode;
+        public float amount;
+        public StoredHealable(HealablePickup.HealMode m, float a) { mode = m; amount = a; }
+    }
+
+    public System.Collections.Generic.List<StoredHealable> storeHealables = new System.Collections.Generic.List<StoredHealable>();
+
     private void Awake()
     {
         //can = GetComponent<Canvas>();
@@ -118,12 +131,12 @@ public class FPCONTROLLER : MonoBehaviour
         healthText.text = currentHealth.ToString();
         this.UpdateHealthBar();
         originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
-        
+
         // for the Ui Game over
         Panel.SetActive(false);
-       // GameOver.gameObject.SetActive(true);
-        
-        
+        // GameOver.gameObject.SetActive(true);
+
+
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -140,8 +153,8 @@ public class FPCONTROLLER : MonoBehaviour
     private void Start()
     {
         healthBar.value = currentHealth;
-      if (currentAmmo == -1)
-        currentAmmo = maxAmmo;
+        if (currentAmmo == -1)
+            currentAmmo = maxAmmo;
 
     }
 
@@ -197,7 +210,7 @@ public class FPCONTROLLER : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
 
         animator.SetBool("Reloading", false);
-       
+
         currentAmmo = maxAmmo;
         isReloading = false;
     }
@@ -231,7 +244,7 @@ public class FPCONTROLLER : MonoBehaviour
         if (context.performed && Time.time >= NextTimeToFire)
         {
             NextTimeToFire = Time.time + 1f / fireRate;
-            Fire(); 
+            Fire();
         }
     }
 
@@ -239,7 +252,7 @@ public class FPCONTROLLER : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
-        { 
+        {
 
             if (!isCrouching)
             {
@@ -249,10 +262,10 @@ public class FPCONTROLLER : MonoBehaviour
                 cameraTransform.localPosition = new Vector3(0, crouchCameraHeight, 0);
 
             }
-        } 
+        }
 
         else if (context.canceled)
-      
+
         {
 
             isCrouching = false;
@@ -260,15 +273,15 @@ public class FPCONTROLLER : MonoBehaviour
             cameraTransform.localPosition = new Vector3(0, OriginalCameraHeight, 0);
         }
 
-       
+
     }
 
-    public void OnPickUp(InputAction. CallbackContext context)
+    public void OnPickUp(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
         if (heldObject == null)
-       
+
         {
 
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
@@ -276,7 +289,7 @@ public class FPCONTROLLER : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
             {
                 PickUpObject pickUp = hit.collider.GetComponentInParent<PickUpObject>();
-                if (pickUp !=null)
+                if (pickUp != null)
                 {
                     pickUp.PickUp(holdPoint);
                     heldObject = pickUp;
@@ -286,12 +299,12 @@ public class FPCONTROLLER : MonoBehaviour
             }
         }
         else
-        { 
+        {
 
-          heldObject.Drop();
-          heldObject = null;
+            heldObject.Drop();
+            heldObject = null;
 
-            
+
 
         }
     }
@@ -304,7 +317,7 @@ public class FPCONTROLLER : MonoBehaviour
         Vector3 dir = cameraTransform.forward;
         Vector3 impulse = dir * throwForce + Vector3.up * throwUpwardBoost;
 
-       heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
+        heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
         heldObject = null;
 
     }
@@ -315,7 +328,7 @@ public class FPCONTROLLER : MonoBehaviour
     {
 
         float currentSpeed = isSprinting ? sprintSpeed : walkspeed;
-        
+
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * currentSpeed * Time.deltaTime);
 
@@ -328,12 +341,12 @@ public class FPCONTROLLER : MonoBehaviour
 
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
-        
-        
-           
 
-            velocity.y += Gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+
+
+
+        velocity.y += Gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     public void HandleLook()
@@ -348,18 +361,18 @@ public class FPCONTROLLER : MonoBehaviour
 
 
     // Don't delete this code it's for future references.
-   /* private void Shoot()
-    {
-        if (bulletprefab != null && gunpoint != null)
-        { GameObject bullet = Instantiate(bulletprefab, gunpoint.position, gunpoint.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+    /* private void Shoot()
+     {
+         if (bulletprefab != null && gunpoint != null)
+         { GameObject bullet = Instantiate(bulletprefab, gunpoint.position, gunpoint.rotation);
+             Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
-            if (rb !=null)
-            { rb.AddForce(gunpoint.forward * bulletvelocity, ForceMode.Impulse); // adjust force value as needed
-            }
-        }
-    }
-   */
+             if (rb !=null)
+             { rb.AddForce(gunpoint.forward * bulletvelocity, ForceMode.Impulse); // adjust force value as needed
+             }
+         }
+     }
+    */
 
     /*public void OnDoor(InputAction.CallbackContext context)
     {
@@ -388,13 +401,13 @@ public class FPCONTROLLER : MonoBehaviour
     }
     */
 
-    private  void Fire()
+    private void Fire()
     {
 
         currentAmmo--;
         MuzzleFlash.Play();
         RaycastHit hit;
-        if(Physics.Raycast(gunpoint.position , transform.TransformDirection(Vector3.forward) , out hit , bulletrange))
+        if (Physics.Raycast(gunpoint.position, transform.TransformDirection(Vector3.forward), out hit, bulletrange))
 
         { Debug.DrawRay(gunpoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log(hit.transform.name);
@@ -421,16 +434,16 @@ public class FPCONTROLLER : MonoBehaviour
                 GameObject D = Instantiate(HitPoint3, hit.point, Quaternion.identity);
                 Destroy(D, 0.5f);
             }
-            
+
             EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
 
             if (enemy != null)
             {
                 enemy.TakeDamage(1);
             }
-           
-            
-           
+
+
+
         }
     }
 
@@ -458,14 +471,14 @@ public class FPCONTROLLER : MonoBehaviour
 
     //this is for the healable
 
-    public void Heal (float amount)
+    public void Heal(float amount)
     {
         if (amount <= 0f) return;
         currentHealth += amount;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
         UpdateHealthBar();
-        
+
         //if i end up using mat's idea
         //MattshealthBarUpdate();
     }
@@ -506,10 +519,10 @@ public class FPCONTROLLER : MonoBehaviour
                 return;
             }
 
-           
+
 
             Animateddoors animatedDoor = hit.collider.GetComponentInParent<Animateddoors>();
-           
+
             if (animatedDoor != null)
             { animatedDoor.TryOpen();
                 return;
@@ -535,9 +548,11 @@ public class FPCONTROLLER : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float percentHealth = this.currentHealth/ this.maxHealth;
+        float percentHealth = this.currentHealth / this.maxHealth;
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
+
+   
 
 }
 

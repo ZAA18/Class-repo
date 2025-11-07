@@ -10,9 +10,12 @@ public class HealablePickup : MonoBehaviour
     [Header("Pickup Settings")]
     public HealMode healMode = HealMode.AddAmount;
     public float healAmount = 30f;
+    [Range(0f, 1f)]
+    public float rquireBelowPercent = 0.999f;
     public string playerTag = "Player";
-    public bool destroyOnPickup = true;
 
+    [Header("Behaviour")]
+    public bool destroyOnPickup = true;
     [Header("Sound for PickUp")]
     public UnityEvent onPicked;
 
