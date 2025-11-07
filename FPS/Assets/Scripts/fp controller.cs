@@ -122,6 +122,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     public System.Collections.Generic.List<StoredHealable> storeHealables = new System.Collections.Generic.List<StoredHealable>();
 
+
     private void Awake()
     {
         //can = GetComponent<Canvas>();
@@ -471,25 +472,37 @@ public class FPCONTROLLER : MonoBehaviour
 
     //this is for the healable
 
-    public void Heal(float amount)
-    {
-        if (amount <= 0f) return;
-        currentHealth += amount;
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
-        UpdateHealthBar();
+    /* public void Heal(float amount)
+     {
+         if (amount <= 0f) return;
+         currentHealth += amount;
+         if (currentHealth > maxHealth)
+             currentHealth = maxHealth;
+         UpdateHealthBar();
 
-        //if i end up using mat's idea
-        //MattshealthBarUpdate();
+         //if i end up using mat's idea
+         //MattshealthBarUpdate();
+     }
+
+
+
+     //when you get full pack ammo like COD mobile your whole life goes up
+     public void RestoreToFull()
+     {
+         currentHealth = maxHealth;
+         UpdateHealthBar();
+         //MattshealthBarUpdate(); // might really use a scroll
+     }
+    */
+
+
+    public void StoreHealable(HealablePickup.HealMode mode, float amount)
+    {
+          
     }
 
-    //when you get full pack ammo like COD mobile your whole life goes up
-    public void RestoreToFull()
-    {
-        currentHealth = maxHealth;
-        UpdateHealthBar();
-        //MattshealthBarUpdate(); // might really use a scroll
-    }
+
+
     private void DestroyPlayer()
     {
         Destroy(gameObject);
