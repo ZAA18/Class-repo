@@ -326,6 +326,37 @@ public class FPCONTROLLER : MonoBehaviour
         }
     }
 
+
+    public void OnUseHeal(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+
+        if (storeHealables.Count == 0)
+        {
+            Debug.Log("No stored healables to use.");
+            return;
+        }
+
+        StoredHealable item = storeHealables[storeHealables.Count - 1];
+        storeHealables.RemoveAt(storeHealables.Count - 1);
+
+        if (item.mode == HealablePickup.HealMode.AddAmount)
+
+        {
+            Heal(item.amount);
+            Debug.Log($"Used stored healable: +{item.amount}HP");
+        }
+
+        else
+
+        {
+            RestoreToFull();
+            Debug.Log("Used stored Full Restore Healable");
+        }
+    
+            }
+
     public void OnThrow(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -338,6 +369,7 @@ public class FPCONTROLLER : MonoBehaviour
         heldObject = null;
 
     }
+
 
 
 

@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Controls",
     "maps": [
         {
@@ -90,6 +91,15 @@
                     "name": "Weapon Switch",
                     "type": "Button",
                     "id": "5de1a3b9-5dfa-43a8-a96e-ed90da26b407",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "fdb8ab62-12b4-43d6-b37d-f1dce09a8374",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -435,6 +445,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Weapon Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc0fe307-4668-4386-b71d-af3deceaee67",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
