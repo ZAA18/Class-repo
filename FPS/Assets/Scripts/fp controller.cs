@@ -514,7 +514,8 @@ public class FPCONTROLLER : MonoBehaviour
 
     public void StoreHealable(HealablePickup.HealMode mode, float amount)
     {
-          
+        storeHealables.Add(new StoredHealable(mode, amount));
+        Debug.Log($"FPCONTROLLER: Stored healable({mode}, {amount}). Total Stored = {storeHealables.Count}");
     }
 
     public void Heal(float amount)
