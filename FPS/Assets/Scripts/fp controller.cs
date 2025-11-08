@@ -336,7 +336,7 @@ public class FPCONTROLLER : MonoBehaviour
 
         heldObject.Throw(impulse); // pickup object (Script) does not contain a throw function
         heldObject = null;
-
+        SoundManager.PlaySound(SoundType.THROW);
     }
 
 
@@ -359,7 +359,11 @@ public class FPCONTROLLER : MonoBehaviour
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
-
+        if(walkspeed >= 1f)
+        {
+            SoundManager.PlaySound(SoundType.WALK);
+            Debug.Log("Walking");
+        }
 
 
         velocity.y += Gravity * Time.deltaTime;
@@ -420,7 +424,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     private void Fire()
     {
-
+        SoundManager.PlaySound(SoundType.SHOOT);
         currentAmmo--;
         MuzzleFlash.Play();
         RaycastHit hit;
@@ -472,6 +476,7 @@ public class FPCONTROLLER : MonoBehaviour
         damageScreen.color = new Color(originalColor.r, originalColor.g, originalColor.b, flashAlpha);
         isDamaged = true;
         MattshealthBarUpdate();
+        SoundManager.PlaySound(SoundType.DAMAGE);
 
         if (currentHealth <= 0)
         {

@@ -76,7 +76,6 @@ public class StoryManager : MonoBehaviour
             StoryText.text = StoryLines[currentIndex];
             isTyping = false;
             ContinueButton.SetActive(true);
-
         }
 
         else
