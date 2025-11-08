@@ -279,32 +279,30 @@ public class FPCONTROLLER : MonoBehaviour
 
     public void OnPickUp(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed)
+            return;
 
-        if (heldObject == null)
-
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
         {
+            PickUpObject pickUp = hit.collider.GetComponentInParent<PickUpObject>();
 
-            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+            if (pickUp != null)
             {
-                PickUpObject pickUp = hit.collider.GetComponentInParent<PickUpObject>();
-                if (pickUp != null)
+                if (heldObject == null)
                 {
                     pickUp.PickUp(holdPoint);
                     heldObject = pickUp;
+                    Debug.Log("OnPickUp: picked up regular object");
+                    return;
 
                 }
-
+                else
+                {
+                    heldObject.Drop();
+                    heldObject = null;
+                }
             }
-        }
-        else
-        {
-
-            heldObject.Drop();
-            heldObject = null;
-
 
 
         }
@@ -501,8 +499,25 @@ public class FPCONTROLLER : MonoBehaviour
           
     }
 
+    public void Heal(float amount)
+    {
+        if (amount <= 0f)
+            return;
+        float before = currentHealth;
+        currentHealth += amount;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+        UpdateHealthBar();
+       // MattsheathBarUpdate();
+        Debug.Log($"FPCONTROLLER: Heal({amount}) called. Health {before} -> {currentHealth}");
+    }
 
-
+    public void RestoreToFull()
+    { float before = currentHealth;
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+        
+    }
     private void DestroyPlayer()
     {
         Destroy(gameObject);

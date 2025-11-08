@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.Rendering;
 
 
 [RequireComponent(typeof(Collider))]
@@ -7,11 +9,11 @@ public class HealablePickup : MonoBehaviour
 {
     public enum HealMode { AddAmount, FullRestore }
 
-    [Header("Pickup Settings")]
+    [Header("HealPickup Settings")]
     public HealMode healMode = HealMode.AddAmount;
     public float healAmount = 30f;
     [Range(0f, 1f)]
-    public float rquireBelowPercent = 0.999f;
+    public float requireBelowPercent = 0.999f;
     public string playerTag = "Player";
 
     [Header("Behaviour")]
@@ -19,52 +21,55 @@ public class HealablePickup : MonoBehaviour
     [Header("Sound for PickUp")]
     public UnityEvent onPicked;
 
-    private void Reset()
+   public void PickupBy(FPCONTROLLER fp)
     {
-        var col = GetComponent<Collider>();
-        if (col == null)
-            col = gameObject.AddComponent<BoxCollider>();
-        col.isTrigger = true;
-    }
-
-    private void Awake()
-    {
-        var col = GetComponent<Collider>();
-        if (col != null) col.isTrigger = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag(playerTag))
-            return;
-
-        FPCONTROLLER fp = other.GetComponent<FPCONTROLLER>();
-
-        if (fp == null) 
-            
-        fp = other.GetComponentInParent<FPCONTROLLER>();
-
         if (fp == null)
         {
-            Debug.LogWarning($"HealablePickUp: no FPCONTROLLER Found on Object {other.name}");
+            Debug.LogWarning("HealablePickup.PickupBy: fp is null");
             return;
         }
 
-        ApplyPickupTo(fp);
+    
+        Debug.Log($"HealablePickup. Player tried to up {name} (mode = {healMode}, amount = {healAmount})");
 
-    }
-
-    private void ApplyPickupTo(FPCONTROLLER fp)
-    {
         if (healMode == HealMode.AddAmount)
-            fp.Heal(healAmount);
+        {
+            float current = fp.currentHealth;
+            float max = fp.MaxHealth;
+            float percent = current / max;
+
+            Debug.Log($"HealablePickup: Player health {current} ({percent:P0}), requireBelowPercent = {requireBelowPercent:P0}");
+
+
+            if (percent < requireBelowPercent)
+            {
+                fp.Heal(healAmount);
+                Debug.Log($"HealablePickup: Applied {healAmount} HP to player.");
+
+            }
+            else
+            {
+                fp.StoreHealable(healMode, healAmount);
+                Debug.Log($"HealablePickup: Player health too high - stored healable in inventory.");
+            }
+        }
+
         else
-            fp.RestoreToFull();
+        {
+            fp.StoreHealable(healMode, healAmount);
+            Debug.Log("HealablePickup: Full packed stored for later");
+
+        }
 
         onPicked?.Invoke();
 
         if (destroyOnPickup)
             Destroy(gameObject);
-        else gameObject.SetActive(false);
+        else
+            gameObject.SetActive(false);
+
+        
+    
     }
+
 }
