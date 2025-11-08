@@ -301,10 +301,28 @@ public class FPCONTROLLER : MonoBehaviour
                 {
                     heldObject.Drop();
                     heldObject = null;
+                    Debug.Log("OnPickUp: dropped held object.");
+                    return;
                 }
             }
 
+            HealablePickup healPickUp = hit.collider.GetComponentInParent<HealablePickup>();
+            if (healPickUp != null)
 
+            {
+                healPickUp.PickupBy(this);
+                Debug.Log("OnPickUp: healable pickup processed.");
+                return;
+            }
+        }
+        else
+        {
+            if (heldObject != null)
+            { heldObject.Drop();
+                heldObject = null;
+                Debug.Log("OnPickUp: dropped held object (no raycast target).");
+                return;
+            }
         }
     }
 
