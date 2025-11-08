@@ -13,10 +13,10 @@ public class StoryManager : MonoBehaviour
     public GameObject ContinueButton;
 
     [Header("Story Settings")]
-    [TextArea(3, 10)]
+    [TextArea(3, 5)]
     public string[] StoryLines;
     public Sprite[] StoryPictures;
-    public float typingSpeed = 20f;
+    public float typingSpeed = 7f;
 
     private int currentIndex = 0;
     private bool isTyping = false;
