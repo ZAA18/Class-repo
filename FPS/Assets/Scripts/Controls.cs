@@ -183,7 +183,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Heal"",
+                    ""name"": ""UseHeal"",
                     ""type"": ""Button"",
                     ""id"": ""fdb8ab62-12b4-43d6-b37d-f1dce09a8374"",
                     ""expectedControlType"": """",
@@ -541,7 +541,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Heal"",
+                    ""action"": ""UseHeal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -590,7 +590,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Door = m_Player.FindAction("Door", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_WeaponSwitch = m_Player.FindAction("Weapon Switch", throwIfNotFound: true);
-        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_UseHeal = m_Player.FindAction("UseHeal", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -681,7 +681,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Door;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_WeaponSwitch;
-    private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_UseHeal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -734,9 +734,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @WeaponSwitch => m_Wrapper.m_Player_WeaponSwitch;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Heal".
+        /// Provides access to the underlying input action "Player/UseHeal".
         /// </summary>
-        public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @UseHeal => m_Wrapper.m_Player_UseHeal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -793,9 +793,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @WeaponSwitch.started += instance.OnWeaponSwitch;
             @WeaponSwitch.performed += instance.OnWeaponSwitch;
             @WeaponSwitch.canceled += instance.OnWeaponSwitch;
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
+            @UseHeal.started += instance.OnUseHeal;
+            @UseHeal.performed += instance.OnUseHeal;
+            @UseHeal.canceled += instance.OnUseHeal;
         }
 
         /// <summary>
@@ -837,9 +837,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @WeaponSwitch.started -= instance.OnWeaponSwitch;
             @WeaponSwitch.performed -= instance.OnWeaponSwitch;
             @WeaponSwitch.canceled -= instance.OnWeaponSwitch;
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
+            @UseHeal.started -= instance.OnUseHeal;
+            @UseHeal.performed -= instance.OnUseHeal;
+            @UseHeal.canceled -= instance.OnUseHeal;
         }
 
         /// <summary>
@@ -977,11 +977,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnWeaponSwitch(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "UseHeal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHeal(InputAction.CallbackContext context);
+        void OnUseHeal(InputAction.CallbackContext context);
     }
 }
