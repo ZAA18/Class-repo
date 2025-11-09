@@ -85,6 +85,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Healables")]
     private HealablePickup healableInRange;
+    private int storeMedkitsFull = 0;
 
 
     [Header("Damage Screen")]
