@@ -81,6 +81,11 @@ public class FPCONTROLLER : MonoBehaviour
     public float currentHealth;
     public float MaxHealth => maxHealth;
 
+    //healables
+
+    [Header("Healables")]
+    private HealablePickup healableInRange;
+
 
     [Header("Damage Screen")]
     public Image damageScreen;
@@ -550,6 +555,40 @@ public class FPCONTROLLER : MonoBehaviour
         Debug.Log($"FPCONTROLLER: Stored healable({mode}, {amount}). Total Stored = {storeHealables.Count}");
     }
 
+    public void UsesStoredHealable()
+    {
+
+        if ((storeHealables == null || storeHealables.Count == 0))
+        {
+
+            Debug.Log("FPCONTROLLER: No stored healables to use.");
+            return;
+        }
+
+        StoredHealable sh = storeHealables[storeHealables.Count - 1];
+        storeHealables.RemoveAt(storeHealables.Count - 1);
+
+        if (sh.mode == HealablePickup.HealMode.AddAmount)
+        {
+
+            Heal(sh.amount);
+            Debug.Log($"FPCONTROLLER: Used stored AddAmount heal ({sh.amount}). Health now {currentHealth / MaxHealth}");
+
+        }
+        else
+        {
+            RestoreToFull();
+            Debug.Log($"FPCONTROLLER: Used stored FullRestore heal. Health now {currentHealth}/ {MaxHealth}");
+                
+        }
+
+        UpdateHealthBar();
+    
+        
+        //   MattshealthBarUpdate();
+
+    }
+
     public void Heal(float amount)
     {
         if (amount <= 0f)
@@ -562,6 +601,8 @@ public class FPCONTROLLER : MonoBehaviour
        // MattsheathBarUpdate();
         Debug.Log($"FPCONTROLLER: Heal({amount}) called. Health {before} -> {currentHealth}");
     }
+
+    
 
     public void RestoreToFull()
     { float before = currentHealth;
@@ -631,8 +672,30 @@ public class FPCONTROLLER : MonoBehaviour
         this.HealthBar.UpdateHealthBarAmount(percentHealth);
     }
 
-   
 
+    // these are triggers for the player to collider with the health box 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        HealablePickup healable = other.GetComponent<HealablePickup>();
+        if ( healable != null)
+
+        {
+            healableInRange = healable;
+            Debug.Log("Healable item ready to pick:" + healable.name);
+        }
+    
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        HealablePickup healable = other.GetComponent<HealablePickup>();
+        if ( (healable != null && healableInRange == healable))
+        {
+            healableInRange = null;
+            Debug.Log("Left healable pickup range");
+        }
+    }
 }
 
 
