@@ -619,6 +619,14 @@ public class FPCONTROLLER : MonoBehaviour
     {
         if (!context.performed) return;
 
+        if (healableInRange != null)
+
+        {
+            healableInRange.PickupBy(this);
+            healableInRange = null;
+            return;
+        }
+
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
