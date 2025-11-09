@@ -539,10 +539,10 @@ MonoBehaviour:
   - "And so here I am again\u2026\nmask on, gun in hand, heart racing.\n\nThis will
     be my last heist.\nNo mistakes. No second chances.\nAfter this\u2026 I disappear."
   StoryPictures:
-  - {fileID: 21300000, guid: 68d01703fe354fa4f84943ece4fb5243, type: 3}
-  - {fileID: 21300000, guid: f636de7632948c449abef00e75cfff67, type: 3}
-  - {fileID: 21300000, guid: 3f6592f29725d1141b22917bedc5e622, type: 3}
-  - {fileID: 21300000, guid: c4c7cc070b691a246b106abb45b33803, type: 3}
+  - {fileID: 21300000, guid: cc53b273f1a416640a9dc8014bb5be10, type: 3}
+  - {fileID: 21300000, guid: 203c3193155f2174ca065dd9b899ccab, type: 3}
+  - {fileID: 21300000, guid: ac8dfa82fa303b247a2dc85530439da1, type: 3}
+  - {fileID: 21300000, guid: 294c2cc0be06d0c40a22f7d78824f088, type: 3}
   typingSpeed: 0.09
 --- !u!4 &489693444
 Transform:
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9547169, g: 0.9547169, b: 0.9547169, a: 0.8235294}
+  m_Color: {r: 0.9547169, g: 0.9547169, b: 0.9547169, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: -1.78, y: 0, z: 0, w: 0}
   m_Maskable: 1
