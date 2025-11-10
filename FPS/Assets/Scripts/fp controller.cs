@@ -85,7 +85,7 @@ public class FPCONTROLLER : MonoBehaviour
 
     [Header("Healables")]
     private HealablePickup healableInRange;
-    private int storeMedkitsFull = 0;
+   // private int storeMedkitsFull = 0;
 
 
     [Header("Damage Screen")]
@@ -376,6 +376,50 @@ public class FPCONTROLLER : MonoBehaviour
 
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (healableInRange != null)
+
+        {
+            healableInRange.PickupBy(this);
+            healableInRange = null;
+            return;
+        }
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
+        {
+            KeyItem Key = hit.collider.GetComponentInParent<KeyItem>();
+
+            if (Key != null)
+            {
+                Key.Collect();
+                return;
+            }
+
+
+            WinningItem Win = hit.collider.GetComponent<WinningItem>();
+            if (Win != null)
+            {
+                Win.collect();
+                return;
+            }
+
+
+
+            Animateddoors animatedDoor = hit.collider.GetComponentInParent<Animateddoors>();
+
+            if (animatedDoor != null)
+            {
+                animatedDoor.TryOpen();
+                return;
+            }
+        }
+    }
+
 
 
 
@@ -616,48 +660,7 @@ public class FPCONTROLLER : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        if (healableInRange != null)
-
-        {
-            healableInRange.PickupBy(this);
-            healableInRange = null;
-            return;
-        }
-
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
-        {
-            KeyItem Key = hit.collider.GetComponentInParent<KeyItem>();
-
-            if (Key != null)
-            {
-                Key.Collect();
-                return;
-            }
-
-
-            WinningItem Win = hit.collider.GetComponent<WinningItem>();
-            if (Win != null)
-            {
-                Win.collect();
-                return;
-            }
-
-
-
-            Animateddoors animatedDoor = hit.collider.GetComponentInParent<Animateddoors>();
-
-            if (animatedDoor != null)
-            { animatedDoor.TryOpen();
-                return;
-            }
-        }
-    }
+ 
 
     // Remeber to move the interaction and sprint function ( up- where they belong)
 
